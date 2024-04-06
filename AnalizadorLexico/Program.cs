@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -86,7 +87,7 @@ namespace AnalizadorLexico
 }
     class AnalizLexico
     {
-        int Token, edoActual, edoTransicion;
+        int token, edoActual, edoTransicion;
         private string cadSigma;
         public string Lexema;
         private bool pasEdoAccept;
@@ -188,9 +189,82 @@ namespace AnalizadorLexico
             return true;
         }
 
-        public void setsigma(string cadSigma)
+        public void setsigma(string sigma)
         {
-            this.cadSigma = cadSigma;
+            cadSigma = sigma;
+            pasEdoAccept = false;
+            iniLexema = 0;
+            finLexema = -1;
+            iChar = 0;
+            token = -1;
+            Pila.Clear();
+        }
+
+        public string cadenaXAnalizar()
+        {
+            return cadSigma.Substring(iChar, cadSigma.Length - iChar);
+        }
+
+        public int yylex()
+        {
+            while (true)
+            {
+                Pila.Push(iChar);
+                if (iChar >= cadSigma.Length)
+                {
+                    Lexema = "";
+                    return SimbolosEspeciales.FIN;
+                }
+                iniLexema = iChar;
+                edoActual = 0;
+                pasEdoAccept = false;
+                finLexema = -1;
+                token = -1;
+
+                while (iChar < cadSigma.Length)
+                {
+                    charActual = cadSigma[iChar];
+                    edoTransicion = AutomFD.TablaAFD[edoActual, charActual];
+                    if (edoTransicion != -1)
+                    {
+                        if (AutomFD.TablaAFD[edoTransicion, 256] != -1)
+                        {
+                            pasEdoAccept = true;
+                            token = AutomFD.TablaAFD[edoTransicion, 256];
+                            finLexema = iChar;
+                        }
+
+                        iChar++;
+                        edoActual = edoTransicion;
+                        continue;
+                    }
+
+                    break;
+                }
+
+                if (!pasEdoAccept)
+                {
+                    iChar = iniLexema + 1;
+                    Lexema = cadSigma.Substring(iniLexema, 1);
+                    token = SimbolosEspeciales.ERROR;
+                    return token;
+                }
+
+                Lexema = cadSigma.Substring(iniLexema, finLexema - iniLexema + 1);
+                iChar = finLexema + 1;
+                if (token == SimbolosEspeciales.OMITIR)
+                    continue;
+                else
+                    return token;
+            }
+        }
+
+        public bool Undotoken()
+        {
+            if (Pila.Count == 0)
+                return false;
+            iChar = Pila.Pop();
+            return true;
         }
     }
 }
