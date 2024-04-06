@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AnalizadorLexico.Program;
 
 namespace AnalizadorLexico
 {
@@ -59,11 +60,11 @@ namespace AnalizadorLexico
 
             public bool ProcesarCadena(string cadena)
             {
-                Edo EdoActual = EdoInicial;
+                Edo edoActual = EdoInicial;
 
                 foreach (char simbolo in cadena)
                 {
-                    Transicion transicion = EdoActual.Transiciones.FirstOrDefault(t => t.Simbolo == simbolo);
+                    Transicion transicion = edoActual.Transiciones.FirstOrDefault(t => t.Simbolo == simbolo);
 
                     if (transicion == null)
                     {
@@ -71,15 +72,125 @@ namespace AnalizadorLexico
                         return false;
                     }
 
-                    EdoActual = transicion.EdoSiguiente;
+                    edoActual = transicion.EdoSiguiente;
                 }
 
                 // La cadena es aceptada si terminamos en un Edo final
-                return EdoActual.EsEdoFinal;
+                return edoActual.EsEdoFinal;
             }
         }
 
 
+
     }
 }
+    class AnalizLexico
+    {
+        int Token, edoActual, edoTransicion;
+        private string cadSigma;
+        public string Lexema;
+        private bool pasEdoAccept;
+        private int iniLexema, finLexema, iChar;
+        private char charActual;
+        Stack<int> Pila = new Stack<int>();
+        private AFD AutomFD;
+
+        public AnalizLexico()
+        {
+            cadSigma = "";
+            pasEdoAccept = false;
+            iniLexema = finLexema = 1;
+            iChar = -1;
+            token = -1;
+            Pila.Clear();
+            AutomFD = null;
+        }
+
+        public AnalizLexico(string cadSigma, string archivoAFD, int idAFD)
+        {
+            AutomFD = new AFD();
+            cadSigma = "";
+            pasEdoAccept = false;
+            iniLexema = 0;
+            finLexema = -1;
+            iChar = 0;
+            token = -1;
+            Pila.Clear();
+            AutomFD.LeerAFDdeArchivo(archivoAFD, idAFD);
+        }
+
+        public AnalizLexico(string cadSigma, string archivoAFD)
+        {
+            AutomFD = new AFD();
+            cadSigma = "";
+            pasEdoAccept = false;
+            iniLexema = 0;
+            finLexema = -1;
+            iChar = 0;
+            token = -1;
+            Pila.Clear();
+            AutomFD.LeerAFDdeArchivo(archivoAFD, -1);
+        }
+
+        public AnalizLexico(string cadSigma, int idADF)
+        {
+            AutomFD = new AFD();
+            cadSigma = "";
+            pasEdoAccept = false;
+            iniLexema = 0;
+            finLexema = -1;
+            iChar = 0; //Index character
+            token = -1;
+            Pila.Clear();
+            AutomFD.LeerAFDdeArchivo(archivoAFD, -1);
+        }
+
+        public AnalizLexico(string cadSigma, AFD AutFD)
+        {
+            cadSigma = "";
+            pasEdoAccept = false;
+            iniLexema = 0;
+            finLexema = -1;
+            iChar = 0;
+            token = -1;
+            Pila.Clear();
+            AutomFD = AutFD;
+        }
+
+        public ClassEstadoAnalizLexico GetEdoAnalizLexico()
+        {
+            ClassEstadoAnalizLexico edoActualAnaliz = new ClassEstadoAnalizLexico();
+            edoActualAnaliz.token = token;
+            edoActualAnaliz.edoActual = edoActual;
+            edoActualAnaliz.edoTransicion = edoTransicion;
+            edoActualAnaliz.Pila = Pila;
+            edoActualAnaliz.Lexema = Lexema;
+            edoActualAnaliz.iniLexema = iniLexema;
+            edoActualAnaliz.finLexema = finLexema;
+            edoActualAnaliz.iChar = iChar;
+            edoActualAnaliz.charActual = charActual;
+            edoActualAnaliz.pasEdoAccept = pasEdoAccept;
+            return edoActualAnaliz;
+        }
+
+        public bool SetEdoAnalizLexico(ClassEstadoAnalizLexico e)
+        {
+            token = e.token;
+            edoActual = e.edoActual;
+            edoTransicion = e.edoTransicion;
+            Pila = e.Pila;
+            Lexema = e.Lexema;
+            iniLexema = e.iniLexema;
+            finLexema = e.finLexema;
+            iChar = e.iChar;
+            charActual = e.charActual;
+            pasEdoAccept = e.pasEdoAccept;
+            return true;
+        }
+
+        public void setsigma(string cadSigma)
+        {
+            this.cadSigma = cadSigma;
+        }
+    }
 }
