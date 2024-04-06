@@ -55,14 +55,6 @@ namespace AnalizadorLexico
             token1 = token;
         }
 
-        public HashSet<Transicion> getTrans()
-        {
-            return trans1;
-        }
-
-        public void setTrans(HashSet<Transicion> trans)
-        {
-            trans1 = trans;
-        }
+        public HashSet<Transicion> Trans { get => trans1; set => trans1 = value; }
     }
 }
