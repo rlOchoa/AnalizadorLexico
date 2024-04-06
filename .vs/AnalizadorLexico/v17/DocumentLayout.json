@@ -7,6 +7,18 @@
       "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|c:\\users\\xehcl\\onedrive\\documentos\\analizadorlexico\\analizadorlexico\\analizadorlexico\\estado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\estado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|c:\\users\\xehcl\\onedrive\\documentos\\analizadorlexico\\analizadorlexico\\analizadorlexico\\transicion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\transicion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|c:\\users\\xehcl\\onedrive\\documentos\\analizadorlexico\\analizadorlexico\\analizadorlexico\\afn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\afn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|C:\\Users\\Xehcl\\OneDrive\\Documentos\\AnalizadorLexico\\AnalizadorLexico\\analizadorlexico\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
@@ -18,8 +30,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Transicion.cs",
+              "DocumentMoniker": "C:\\Users\\Xehcl\\OneDrive\\Documentos\\AnalizadorLexico\\AnalizadorLexico\\AnalizadorLexico\\Transicion.cs",
+              "RelativeDocumentMoniker": "AnalizadorLexico\\Transicion.cs",
+              "ToolTip": "C:\\Users\\Xehcl\\OneDrive\\Documentos\\AnalizadorLexico\\AnalizadorLexico\\AnalizadorLexico\\Transicion.cs",
+              "RelativeToolTip": "AnalizadorLexico\\Transicion.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowFcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-05T23:15:06.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Estado.cs",
+              "DocumentMoniker": "C:\\Users\\Xehcl\\OneDrive\\Documentos\\AnalizadorLexico\\AnalizadorLexico\\AnalizadorLexico\\Estado.cs",
+              "RelativeDocumentMoniker": "AnalizadorLexico\\Estado.cs",
+              "ToolTip": "C:\\Users\\Xehcl\\OneDrive\\Documentos\\AnalizadorLexico\\AnalizadorLexico\\AnalizadorLexico\\Estado.cs",
+              "RelativeToolTip": "AnalizadorLexico\\Estado.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEAAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-05T23:10:47.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AFN.cs",
+              "DocumentMoniker": "C:\\Users\\Xehcl\\OneDrive\\Documentos\\AnalizadorLexico\\AnalizadorLexico\\AnalizadorLexico\\AFN.cs",
+              "RelativeDocumentMoniker": "AnalizadorLexico\\AFN.cs",
+              "ToolTip": "C:\\Users\\Xehcl\\OneDrive\\Documentos\\AnalizadorLexico\\AnalizadorLexico\\AnalizadorLexico\\AFN.cs",
+              "RelativeToolTip": "AnalizadorLexico\\AFN.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-05T23:06:37.923Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,14 +79,14 @@
               "RelativeDocumentMoniker": "AnalizadorLexico\\Program.cs",
               "ToolTip": "C:\\Users\\Xehcl\\OneDrive\\Documentos\\AnalizadorLexico\\AnalizadorLexico\\AnalizadorLexico\\Program.cs",
               "RelativeToolTip": "AnalizadorLexico\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAABBAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-05T23:04:20.472Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Xehcl\\OneDrive\\Documentos\\AnalizadorLexico\\AnalizadorLexico\\AnalizadorLexico\\Form1.cs",
               "RelativeDocumentMoniker": "AnalizadorLexico\\Form1.cs",
