@@ -207,9 +207,10 @@ namespace AnalizadorLexico
         public HashSet<Estado> operacionEpsilon(HashSet<Estado> e)
         {
             HashSet<Estado> conjEstados = new HashSet<Estado>();
-            _ = conjEstados.Add(e);
+            
             foreach(Estado edo in e)
             {
+                _ = conjEstados.Add(edo);
                 foreach (Transicion t in edo.Trans)
                 {
                     if (t.getSimInf() == SimbolosEspeciales.EPSILON)
@@ -252,12 +253,8 @@ namespace AnalizadorLexico
 
         
 
-        public Estado irA(HashSet<Estado> e,char a)
-        {
-            foreach(Estado edo in e)
-            {
-                operacionEpsilon(mover(edo, a));
-            }
+        public HashSet<Estado> irA(HashSet<Estado> e,char a)
+        {         
             return operacionEpsilon(mover(e, a));
         }
     }
