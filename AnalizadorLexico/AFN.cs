@@ -192,33 +192,58 @@ namespace AnalizadorLexico
         public HashSet<Estado> operacionEpsilon(Estado e)
         {
             HashSet<Estado> conjEstados = new HashSet<Estado>();
-            _ = conjEstados.Add(e);
-            foreach (Transicion t in e.Trans)
+            Stack<Estado> pilaEstados = new Stack<Estado>();
+            Estado aux, edo;
+            conjEstados.Clear();
+            pilaEstados.Clear();
+
+            pilaEstados.Push(e);
+            while(pilaEstados.Count != 0)
             {
-                if (t.getSimInf() == SimbolosEspeciales.EPSILON)
+                aux = pilaEstados.Pop();
+                _ = conjEstados.Add(aux);
+                foreach(Transicion t in aux.Trans)
                 {
-                    conjEstados.UnionWith(operacionEpsilon(e));
+                    if((edo = t.getEdoTrans(SimbolosEspeciales.EPSILON)) != null)
+                    {
+                        if (!conjEstados.Contains(edo))
+                        {
+                            pilaEstados.Push(edo);
+                        }
+                    }
                 }
             }
-
+           
             return conjEstados;
         }
 
         public HashSet<Estado> operacionEpsilon(HashSet<Estado> e)
         {
             HashSet<Estado> conjEstados = new HashSet<Estado>();
-            
-            foreach(Estado edo in e)
+            Stack<Estado> pilaEstados = new Stack<Estado>();
+            Estado aux, edo;
+            conjEstados.Clear();
+            pilaEstados.Clear();
+            foreach(Estado ed in e)
             {
-                _ = conjEstados.Add(edo);
-                foreach (Transicion t in edo.Trans)
+                pilaEstados.Push(ed);
+            }
+            while (pilaEstados.Count != 0)
+            {
+                aux = pilaEstados.Pop();
+                _ = conjEstados.Add(aux);
+                foreach (Transicion t in aux.Trans)
                 {
-                    if (t.getSimInf() == SimbolosEspeciales.EPSILON)
+                    if ((edo = t.getEdoTrans(SimbolosEspeciales.EPSILON)) != null)
                     {
-                        conjEstados.UnionWith(operacionEpsilon(e));
+                        if (!conjEstados.Contains(edo))
+                        {
+                            pilaEstados.Push(edo);
+                        }
                     }
                 }
             }
+
             return conjEstados;
         }
 
@@ -251,11 +276,108 @@ namespace AnalizadorLexico
             return conjEstados;
         }
 
-        
-
         public HashSet<Estado> irA(HashSet<Estado> e,char a)
         {         
             return operacionEpsilon(mover(e, a));
+        }
+
+        
+
+        public AFD convAFNaAFD()
+        {
+            int cardinAlfabeto, numEdoAFD;
+            int i, j, r;
+            char[] arralfabeto;
+            EstadoIdj Ij, Ik;
+            bool existe;
+
+            HashSet<Estado> conjAux = new HashSet<Estado> ();
+            HashSet<EstadoIdj> EdosAFD = new HashSet<EstadoIdj> ();
+            Queue<EstadoIdj> EdosSinAnalizar = new Queue<EstadoIdj> (); 
+
+            EdosAFD.Clear ();
+            EdosSinAnalizar.Clear();
+
+            cardinAlfabeto = alfabeto.Count;
+            arralfabeto = new char[cardinAlfabeto];
+            i = 0;
+            foreach(char c in arralfabeto)
+            {
+                arralfabeto[i++] = c;
+            }
+            j = 0;
+            Ij = new EstadoIdj()
+            {
+                j = j,
+                conIj = operacionEpsilon(this.EdoIni)
+            };
+
+            EdosAFD.Add (Ij);
+            EdosSinAnalizar.Enqueue(Ij);
+            j++;
+            while(EdosSinAnalizar.Count != 0)
+            {
+                Ij = EdosSinAnalizar.Dequeue();
+
+                foreach(char c in alfabeto)
+                {
+                    Ik = new EstadoIdj()
+                    {
+                        conIj = irA(Ij.conIj,c)
+                    };
+
+                    if (Ik.conIj.Count() == 0)
+                        continue;
+                    existe = false;
+                    foreach(EstadoIdj I in EdosAFD)
+                    {
+                        if (I.conIj.SetEquals(Ik.conIj))
+                        {
+                            existe = true;
+                            r = indiceCaracter(arralfabeto,c);
+                            Ij.transicionesAFD[r] = I.j;
+                        }
+                    }
+                    if (!existe)
+                    {
+                        Ik.j = j;
+                        r = indiceCaracter(arralfabeto, c);
+                        Ij.transicionesAFD[r] = Ik.j;
+                        _ = EdosAFD.Add(Ik);
+                        EdosSinAnalizar.Enqueue(Ik);
+                        j++;
+                    }
+                }
+            }
+            numEdoAFD = j;
+            foreach(EstadoIdj eafd in EdosAFD)
+            {
+                HashSet<Estado> aux = eafd.conIj;
+                aux.IntersectWith(this.EdosAccept);
+                if (aux != null)
+                {
+                    foreach (Estado e in this.EdosAccept)
+                    {
+                        eafd.transicionesAFD[256]=e.getToken();
+                    }
+                }
+            }
+            AFD nuevoAFD = new AFD();
+            nuevoAFD.crearAFD(EdosAFD,numEdoAFD,this.alfabeto);
+            return nuevoAFD;
+        }
+
+        public int indiceCaracter(char[] arregloAlfabeto,char c)
+        {
+            int aux=0;
+            for (int i = 0; i < arregloAlfabeto.Length; i++)
+            {
+                if (arregloAlfabeto[i]==c)
+                {
+                    aux= i;
+                }
+            }
+            return aux;
         }
     }
 }
