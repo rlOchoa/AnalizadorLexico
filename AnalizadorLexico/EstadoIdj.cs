@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnalizadorLexico
 {
-    internal class EstadoIdj
+    public class EstadoIdj
     {
         //atributos
         public int j;

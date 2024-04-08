@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static AnalizadorLexico.Program;
+using AnalizadorLexico;
 
 namespace AnalizadorLexico
 {
-    internal class AFN
+    public class AFN
     {
         //Atributos
         public static HashSet<AFN> conjDeAFNs = new HashSet<AFN>();
         Estado EdoIni;
         HashSet<Estado> EdosAFN = new HashSet<Estado>();
         HashSet<Estado> EdosAccept = new HashSet<Estado>();
-        HashSet<char> alfabeto = new HashSet<char>();
-        public int idAFN;
+        HashSet<char> Alfabeto = new HashSet<char>();
+        bool SeAgregoAFNUnionLexico;
+        public int idAFN; 
 
         //constructores
         public AFN()
@@ -24,27 +25,29 @@ namespace AnalizadorLexico
             EdoIni = null;
             EdosAFN.Clear();
             EdosAccept.Clear();
-            alfabeto.Clear();
+            Alfabeto.Clear();
+            SeAgregoAFNUnionLexico = false;
         }
 
         //Metodos
-        public AFN crearAFNBascio(char s)
+        public AFN crearAFNBasico(char s)
         {
             Transicion t;
             Estado e1, e2;
             e1 = new Estado();
             e2 = new Estado();
-            t = new Transicion(s,e2);
+            t = new Transicion(s, e2);
             _ = e1.Trans.Add(t);
             e2.setEdoAccept(true);
-            _ = alfabeto.Add(s);
+            _ = Alfabeto.Add(s);
             EdoIni = e1;
             _ = EdosAFN.Add(e1);
             _ = EdosAFN.Add(e2);
             _ = EdosAccept.Add(e2);
+            SeAgregoAFNUnionLexico = false;
             return this;
         }
-        public AFN crearAFNBascio(char s1, char s2)
+        public AFN crearAFNBasico(char s1, char s2)
         {
             char i;
             if (s1 > s2)
@@ -58,25 +61,27 @@ namespace AnalizadorLexico
             e1 = new Estado();
             e2 = new Estado();
             t = new Transicion(s1, s2, e2);
-            e1.Trans.Add(t);
+            _ = e1.Trans.Add(t);
             e2.setEdoAccept(true);
             for (i = s1 ; i <= s2 ; i++)
             {
-                _ = alfabeto.Add(i);
+                _ = Alfabeto.Add(i);
             }
             EdoIni = e1;
             _ = EdosAFN.Add(e1);
             _ = EdosAFN.Add(e2);
             _ = EdosAccept.Add(e2);
+            SeAgregoAFNUnionLexico = false;
             return this;
         }
+
         public AFN unirAFNs(AFN afn)
         {
             Estado e1 = new Estado();
             Estado e2 = new Estado();
 
             Transicion t1 = new Transicion(SimbolosEspeciales.EPSILON, this.EdoIni);
-            Transicion t2 = new Transicion(SimbolosEspeciales.EPSILON,afn.EdoIni);
+            Transicion t2 = new Transicion(SimbolosEspeciales.EPSILON, afn.EdoIni); //afn == f2
             _ = e1.Trans.Add(t1);
             _ = e1.Trans.Add(t2);
 
@@ -85,6 +90,7 @@ namespace AnalizadorLexico
                 _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON,e2));
                 e.setEdoAccept(false);
             }
+
             foreach (Estado e in afn.EdosAccept)
             {
                 _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e2));
@@ -95,21 +101,21 @@ namespace AnalizadorLexico
             afn.EdosAccept.Clear();
             this.EdoIni = e1;
             e2.setEdoAccept(true);
-            _ = this.EdosAccept.Add(e2);
+            _ = this.EdosAccept.Add(e2); //Do we need to call for void?
             this.EdosAFN.UnionWith(afn.EdosAFN);
             _ = this.EdosAFN.Add(e1);
             _ = this.EdosAFN.Add(e2);
-            this.alfabeto.UnionWith(afn.alfabeto);
+            this.Alfabeto.UnionWith(afn.Alfabeto);
             return this;
         }
 
-        public AFN concatAFNs(AFN afn)
+        public AFN concatAFNs(AFN afn) //afn == f2 again
         {
             foreach (Transicion t in afn.EdoIni.Trans)
             {
                 foreach (Estado e in this.EdosAccept)
                 {
-                    _ = e.Trans.Add(t);
+                    _ = e.Trans.Add(t); //Again, do we need to call for void?
                     e.setEdoAccept(false);
                 }
             }
@@ -117,7 +123,7 @@ namespace AnalizadorLexico
 
             this.EdosAccept = afn.EdosAccept;
             this.EdosAFN.UnionWith(afn.EdosAFN);
-            this.alfabeto.UnionWith(afn.alfabeto);
+            this.Alfabeto.UnionWith(afn.Alfabeto);
 
             return this;
         }
@@ -131,15 +137,16 @@ namespace AnalizadorLexico
             foreach (Estado e in this.EdosAccept)
             {
                 _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eFinal));
+                //_ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, this.EdoIni)); //Missing and asking for clarification
+                e.setEdoAccept(false); //Added
             }
-            _ = eFinal.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eInicial));
 
-            _ = this.EdosAFN.Add(eInicial);
-            _ = this.EdosAFN.Add(eFinal);
+            this.EdoIni = eInicial;
+            eFinal.setEdoAccept(true); //Added
             this.EdosAccept.Clear();
             _ = this.EdosAccept.Add(eFinal);
-            this.EdoIni = eInicial;
-           
+            _ = this.EdosAFN.Add(eInicial);
+            _ = this.EdosAFN.Add(eFinal);
 
             return this;
         }
@@ -150,19 +157,22 @@ namespace AnalizadorLexico
             Estado eFinal = new Estado();
 
             _ = eInicial.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, this.EdoIni));
+            _ = eInicial.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eFinal)); //Added
             foreach (Estado e in this.EdosAccept)
             {
                 _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eFinal));
+                _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, this.EdoIni)); //Added
+                e.setEdoAccept(false); //Added
             }
-            _ = eFinal.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eInicial));
-            _ = eInicial.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON,eFinal));
 
-            _ = this.EdosAFN.Add(eInicial);
-            _ = this.EdosAFN.Add(eFinal);
+            _ = eFinal.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eInicial)); // ?
+
+            this.EdoIni = eInicial;
+            eFinal.setEdoAccept(true);
             this.EdosAccept.Clear();
             _ = this.EdosAccept.Add(eFinal);
-            this.EdoIni = eInicial;
-
+            _ = this.EdosAFN.Add(eInicial);
+            _ = this.EdosAFN.Add(eFinal);
 
             return this;
         }
@@ -173,26 +183,29 @@ namespace AnalizadorLexico
             Estado eFinal = new Estado();
 
             _ = eInicial.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, this.EdoIni));
+            _ = eInicial.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eFinal)); //Added
             foreach (Estado e in this.EdosAccept)
             {
                 _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eFinal));
+                e.setEdoAccept(false); //Added
             }
-            _ = eInicial.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eFinal));
 
-            _ = this.EdosAFN.Add(eInicial);
-            _ = this.EdosAFN.Add(eFinal);
+            _ = eInicial.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eFinal)); //Consulting
+
+            this.EdoIni = eInicial;
+            eFinal.setEdoAccept(true); //Added
             this.EdosAccept.Clear();
             _ = this.EdosAccept.Add(eFinal);
-            this.EdoIni = eInicial;
-
+            _ = this.EdosAFN.Add(eInicial);
+            _ = this.EdosAFN.Add(eFinal);
 
             return this;
         }
 
         public HashSet<Estado> operacionEpsilon(Estado e)
         {
-            HashSet<Estado> conjEstados = new HashSet<Estado>();
-            Stack<Estado> pilaEstados = new Stack<Estado>();
+            HashSet<Estado> conjEstados = new HashSet<Estado>(); //Resultado del conjunto (R)
+            Stack<Estado> pilaEstados = new Stack<Estado>(); //Pila de estados (S)
             Estado aux, edo;
             conjEstados.Clear();
             pilaEstados.Clear();
@@ -224,10 +237,12 @@ namespace AnalizadorLexico
             Estado aux, edo;
             conjEstados.Clear();
             pilaEstados.Clear();
+
             foreach(Estado ed in e)
             {
                 pilaEstados.Push(ed);
             }
+
             while (pilaEstados.Count != 0)
             {
                 aux = pilaEstados.Pop();
@@ -249,9 +264,12 @@ namespace AnalizadorLexico
 
         public HashSet<Estado> mover(Estado e, char a)
         {
-            HashSet<Estado> conjEstados = new HashSet<Estado>();
+            HashSet<Estado> conjEstados = new HashSet<Estado>(); //Conjunto de estados (C)
+            conjEstados.Clear();
+
             foreach (Transicion t in e.Trans)
             {
+                
                 if (t.getSimInf() == a)
                 {
                     _ = conjEstados.Add(e);
@@ -281,13 +299,52 @@ namespace AnalizadorLexico
             return operacionEpsilon(mover(e, a));
         }
 
-        
+        public void unionEspecialAFNs(AFN afn, int Token)
+        {
+            Estado e;
+            if (!this.SeAgregoAFNUnionLexico)
+            {
+                this.EdosAFN.Clear();
+                this.Alfabeto.Clear();
+                e = new Estado();
+                _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, afn.EdoIni));
+                this.EdoIni = e;
+                this.EdosAFN.Add(e);
+                this.SeAgregoAFNUnionLexico = true;
+            }
+            else
+            {
+                this.EdoIni.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, afn.EdoIni));
+            }
+
+            foreach (Estado edoAccept in afn.EdosAccept)
+            {
+                edoAccept.setToken(Token);
+            }
+            this.EdosAccept.UnionWith(afn.EdosAccept);
+            this.EdosAFN.UnionWith(afn.EdosAFN);
+            this.Alfabeto.UnionWith(afn.Alfabeto);
+
+        }
+
+        public int indiceCaracter(char[] arregloAlfabeto, char c)
+        {
+            int aux = 0;
+            for (int i = 0; i < arregloAlfabeto.Length; i++)
+            {
+                if (arregloAlfabeto[i] == c)
+                {
+                    aux = i;
+                }
+            }
+            return aux;
+        }
 
         public AFD convAFNaAFD()
         {
             int cardinAlfabeto, numEdoAFD;
             int i, j, r;
-            char[] arralfabeto;
+            char[] arrAlfabeto;
             EstadoIdj Ij, Ik;
             bool existe;
 
@@ -298,12 +355,12 @@ namespace AnalizadorLexico
             EdosAFD.Clear ();
             EdosSinAnalizar.Clear();
 
-            cardinAlfabeto = alfabeto.Count;
-            arralfabeto = new char[cardinAlfabeto];
+            cardinAlfabeto = Alfabeto.Count;
+            arrAlfabeto = new char[cardinAlfabeto];
             i = 0;
-            foreach(char c in arralfabeto)
+            foreach(char c in arrAlfabeto)
             {
-                arralfabeto[i++] = c;
+                arrAlfabeto[i++] = c;
             }
             j = 0;
             Ij = new EstadoIdj()
@@ -319,7 +376,7 @@ namespace AnalizadorLexico
             {
                 Ij = EdosSinAnalizar.Dequeue();
 
-                foreach(char c in alfabeto)
+                foreach(char c in Alfabeto)
                 {
                     Ik = new EstadoIdj()
                     {
@@ -334,14 +391,15 @@ namespace AnalizadorLexico
                         if (I.conIj.SetEquals(Ik.conIj))
                         {
                             existe = true;
-                            r = indiceCaracter(arralfabeto,c);
+                            r = indiceCaracter(arrAlfabeto,c);
                             Ij.transicionesAFD[r] = I.j;
+                            break;
                         }
                     }
                     if (!existe)
                     {
                         Ik.j = j;
-                        r = indiceCaracter(arralfabeto, c);
+                        r = indiceCaracter(arrAlfabeto, c);
                         Ij.transicionesAFD[r] = Ik.j;
                         _ = EdosAFD.Add(Ik);
                         EdosSinAnalizar.Enqueue(Ik);
@@ -363,21 +421,8 @@ namespace AnalizadorLexico
                 }
             }
             AFD nuevoAFD = new AFD();
-            nuevoAFD.crearAFD(EdosAFD,numEdoAFD,this.alfabeto);
+            nuevoAFD.crearAFD(EdosAFD,numEdoAFD,this.Alfabeto);
             return nuevoAFD;
-        }
-
-        public int indiceCaracter(char[] arregloAlfabeto,char c)
-        {
-            int aux=0;
-            for (int i = 0; i < arregloAlfabeto.Length; i++)
-            {
-                if (arregloAlfabeto[i]==c)
-                {
-                    aux= i;
-                }
-            }
-            return aux;
         }
     }
 }

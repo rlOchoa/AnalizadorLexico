@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnalizadorLexico
 {
-    internal class AFD
+    public class AFD
     {
         //atributos
         public static HashSet<AFD> conjDeAFDs = new HashSet<AFD>();

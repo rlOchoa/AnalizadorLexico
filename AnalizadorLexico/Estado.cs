@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnalizadorLexico
 {
-    internal class Estado
+    public class Estado
     {
         //Atributos de Estado
         static int contadorIdEstado = 0;
