@@ -24,6 +24,7 @@ namespace AnalizadorLexico
             EdosAccept.Clear();
             alfabeto.Clear();
         }
+        
         public AFD crearAFD(HashSet<EstadoIdj> EdosAFDdeAFN, int numEdoAFD, HashSet<char>alfabe)
         {
             int i = 0,k = 0;
