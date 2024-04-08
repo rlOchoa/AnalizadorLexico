@@ -14,6 +14,8 @@ namespace AnalizadorLexico
         HashSet<Estado> EdosAFD = new HashSet<Estado>(); //ya
         HashSet<Estado> EdosAccept = new HashSet<Estado>(); //ya
         HashSet<char> alfabeto = new HashSet<char>(); //ya
+        public int NumEstados;
+        public int[,] TablaAFD;
         public int idAFD; //ya
 
         public AFD() 
@@ -23,6 +25,13 @@ namespace AnalizadorLexico
             EdosAFD.Clear();
             EdosAccept.Clear();
             alfabeto.Clear();
+        }
+
+        public AFD(int numeroEstados, int idAutFD) 
+        {
+            TablaAFD = new int[numeroEstados, 257];
+            for (int i = 0; i < numeroEstados; i++)
+                
         }
         
         public AFD crearAFD(HashSet<EstadoIdj> EdosAFDdeAFN, int numEdoAFD, HashSet<char>alfabe)
