@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,9 @@ namespace AnalizadorLexico
         public int[,] TablaAFD;
         public int idAFD; //ya
 
-        public AFD() 
+        public AFD()
         {
+            this.TablaAFD = new int[0, 0];
             idAFD = 0;
             EdoIni = null;
             EdosAFD.Clear();
@@ -83,6 +85,31 @@ namespace AnalizadorLexico
                 }
             }
             return null;
+        }
+
+        public void LeerAFDdeArchivo(string nombreArchivo, int idAFD)
+        {
+            string linea;
+            string[] datos;
+            System.IO.StreamReader file = new System.IO.StreamReader(nombreArchivo);
+            idAFD = idAFD;
+            while ((linea = file.ReadLine()) != null)
+            {
+                datos = linea.Split(',');
+                if (datos[0] == "AFD")
+                {
+                    NumEstados = Convert.ToInt32(datos[1]);
+                    TablaAFD = new int[NumEstados, 257];
+                }
+                else
+                {
+                    int i = Convert.ToInt32(datos[0]);
+                    int j = Convert.ToInt32(datos[1]);
+                    int k = Convert.ToInt32(datos[2]);
+                    TablaAFD[i, j] = k;
+                }
+            }
+            file.Close();
         }
     }
 }

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AnalizadorLexico
+namespace AnalizadorLexico.forms
 {
-    public partial class Form1 : Form
+    public partial class Unir : Form
     {
-        public Form1()
+        public Unir()
         {
             InitializeComponent();
         }

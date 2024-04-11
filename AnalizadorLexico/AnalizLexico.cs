@@ -8,12 +8,11 @@ namespace AnalizadorLexico
 {
     class AnalizLexico
     {
-        int token, edoActual, edoTransicion;
+        int token, edoActual, edoTransicion, iniLexema, finLexema, iCharAct;
         string cadSigma;
+        char charActual;
         public string Lexema;
         bool pasEdoAccept;
-        int iniLexema, finLexema, iChar;
-        char charActual;
         Stack<int> Pila = new Stack<int>();
         AFD AutomataFD;
 
@@ -22,7 +21,7 @@ namespace AnalizadorLexico
             cadSigma = "";
             pasEdoAccept = false;
             iniLexema = finLexema = -1;
-            iChar = -1;
+            iCharAct = -1;
             token = -1;
             Pila.Clear();
             AutomataFD = null;
@@ -35,7 +34,7 @@ namespace AnalizadorLexico
             pasEdoAccept = false;
             iniLexema = 0;
             finLexema = -1;
-            iChar = 0;
+            iCharAct = 0;
             token = -1;
             Pila.Clear();
             AutomataFD.LeerAFDdeArchivo(archivoAFD, idAFD);
@@ -48,7 +47,7 @@ namespace AnalizadorLexico
             pasEdoAccept = false;
             iniLexema = 0;
             finLexema = -1;
-            iChar = 0;
+            iCharAct = 0;
             token = -1;
             Pila.Clear();
             AutomataFD.LeerAFDdeArchivo(archivoAFD, -1);
@@ -61,7 +60,7 @@ namespace AnalizadorLexico
             pasEdoAccept = false;
             iniLexema = 0;
             finLexema = -1;
-            iChar = 0; //Index character
+            iCharAct = 0; //Index character
             token = -1;
             Pila.Clear();
             AutomataFD.LeerAFDdeArchivo(archivoAFD, idAFD);
@@ -73,20 +72,20 @@ namespace AnalizadorLexico
             pasEdoAccept = false;
             iniLexema = 0;
             finLexema = -1;
-            iChar = 0;
+            iCharAct = 0;
             token = -1;
             Pila.Clear();
             AutomataFD = AutFD;
         }
 
-        public edoAnalizLexico GetEdoAnalizLexico()
+        public AnalizLexico GetAnalizLexico()
         {
-            edoAnalizLexico edoActualAnaliz = new edoAnalizLexico();
+            AnalizLexico edoActualAnaliz = new AnalizLexico();
             edoActualAnaliz.charActual = charActual;
             edoActualAnaliz.edoActual = edoActual;
             edoActualAnaliz.edoTransicion = edoTransicion;
             edoActualAnaliz.finLexema = finLexema;
-            edoActualAnaliz.iChar = iChar;
+            edoActualAnaliz.iCharAct = iCharAct;
             edoActualAnaliz.iniLexema = iniLexema;
             edoActualAnaliz.Lexema = Lexema;
             edoActualAnaliz.pasEdoAccept = pasEdoAccept;
@@ -95,13 +94,13 @@ namespace AnalizadorLexico
             return edoActualAnaliz;
         }
 
-        public bool SetEdoAnalizLexico(edoAnalizLexico e)
+        public bool SetAnalizLexico(AnalizLexico e)
         {
             charActual = e.charActual;
             edoActual = e.edoActual;
             edoTransicion = e.edoTransicion;
             finLexema = e.finLexema;
-            iChar = e.iChar;
+            iCharAct = e.iCharAct;
             iniLexema = e.iniLexema;
             Lexema = e.Lexema;
             pasEdoAccept = e.pasEdoAccept;
@@ -116,35 +115,35 @@ namespace AnalizadorLexico
             pasEdoAccept = false;
             iniLexema = 0;
             finLexema = -1;
-            iChar = 0;
+            iCharAct = 0;
             token = -1;
             Pila.Clear();
         }
 
-        public string cadenaXAnalizar()
+        public string cadenaXAnalizar() // yylex()
         {
-            return cadSigma.Substring(iChar, cadSigma.Length - iChar);
+            return cadSigma.Substring(iCharAct, cadSigma.Length - iCharAct);
         }
 
         public int yylex()
         {
             while (true)
             {
-                Pila.Push(iChar);
-                if (iChar >= cadSigma.Length)
+                Pila.Push(iCharAct);
+                if (iCharAct >= cadSigma.Length)
                 {
                     Lexema = "";
                     return SimbolosEspeciales.FIN;
                 }
-                iniLexema = iChar;
+                iniLexema = iCharAct;
                 edoActual = 0;
                 pasEdoAccept = false;
                 finLexema = -1;
                 token = -1;
 
-                while (iChar < cadSigma.Length)
+                while (iCharAct < cadSigma.Length)
                 {
-                    charActual = cadSigma[iChar];
+                    charActual = cadSigma[iCharAct];
                     edoTransicion = AutomataFD.TablaAFD[edoActual, charActual];
                     if (edoTransicion != -1)
                     {
@@ -152,27 +151,25 @@ namespace AnalizadorLexico
                         {
                             pasEdoAccept = true;
                             token = AutomataFD.TablaAFD[edoTransicion, 256];
-                            finLexema = iChar;
+                            finLexema = iCharAct;
                         }
-
-                        iChar++;
+                        iCharAct++;
                         edoActual = edoTransicion;
                         continue;
                     }
-
                     break;
                 }
 
                 if (!pasEdoAccept)
                 {
-                    iChar = iniLexema + 1;
+                    iCharAct = iniLexema + 1;
                     Lexema = cadSigma.Substring(iniLexema, 1);
                     token = SimbolosEspeciales.ERROR;
                     return token;
                 }
 
                 Lexema = cadSigma.Substring(iniLexema, finLexema - iniLexema + 1);
-                iChar = finLexema + 1;
+                iCharAct = finLexema + 1;
                 if (token == SimbolosEspeciales.OMITIR)
                     continue;
                 else
@@ -184,7 +181,7 @@ namespace AnalizadorLexico
         {
             if (Pila.Count == 0)
                 return false;
-            iChar = Pila.Pop();
+            iCharAct = Pila.Pop();
             return true;
         }
     }
