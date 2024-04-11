@@ -19,7 +19,9 @@ namespace AnalizadorLexico
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Compilador());
+            Compilador compi = new Compilador();
+            compi.Show();
+            Application.Run();
         }
     }
 }

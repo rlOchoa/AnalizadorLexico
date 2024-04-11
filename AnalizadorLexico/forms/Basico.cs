@@ -12,9 +12,15 @@ namespace AnalizadorLexico.forms
 {
     public partial class Basico : Form
     {
-        public Basico()
+        public HashSet<AFN> afns = new HashSet<AFN>();
+        public HashSet<AFD> afds = new HashSet<AFD>();
+
+        public Basico(HashSet<AFN>afns1,HashSet<AFD>afds1)
         {
+            
             InitializeComponent();
+            this.afns = afns1;
+            this.afds = afds1;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -45,6 +51,49 @@ namespace AnalizadorLexico.forms
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCrearAFN_Click(object sender, EventArgs e)
+        {
+            char inf, sup;
+            char[] aux;
+            if(chbASCII.Checked)
+            {
+                inf =(char) int.Parse(txtCaracterInferior.Text);
+                sup =(char) int.Parse(txtCaracterSuperior.Text);
+            }
+            else
+            {
+                aux =txtCaracterInferior.Text.ToCharArray();
+                inf = aux[0];
+                aux = txtCaracterSuperior.Text.ToCharArray();
+                sup = aux[0];
+            }
+            AFN adnaux = new AFN(int.Parse(txtIdAFN.Text));
+            adnaux.crearAFNBasico(inf, sup);
+            if (afns.Add(adnaux))
+            {
+                MessageBox.Show("Se agrego el AFN " + txtIdAFN.Text);            
+            }
+            else
+            {
+                MessageBox.Show("Error: no se agrego ningun AFN");
+            }
+            Compilador compi = new Compilador(afns, afds);
+            compi.Show();
+            this.Hide();
+        }
+
+        private void Basico_Load(object sender, EventArgs e)
+        {
+            this.FormClosed += new FormClosedEventHandler(cerrarForm);
+        }
+
+        private void cerrarForm(object sender, EventArgs e)
+        {
+            Compilador compi = new Compilador(afns, afds);
+            compi.Show();
+            this.Hide();
         }
     }
 }

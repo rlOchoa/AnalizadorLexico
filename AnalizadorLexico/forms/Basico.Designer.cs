@@ -28,31 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chbASCII = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCaracterInferior = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCaracterSuperior = new System.Windows.Forms.TextBox();
+            this.btnCrearAFN = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtIdAFN = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // checkBox1
+            // chbASCII
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 12);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(113, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "Usar código ASCII";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.chbASCII.AutoSize = true;
+            this.chbASCII.Location = new System.Drawing.Point(15, 39);
+            this.chbASCII.Name = "chbASCII";
+            this.chbASCII.Size = new System.Drawing.Size(113, 17);
+            this.chbASCII.TabIndex = 1;
+            this.chbASCII.Text = "Usar código ASCII";
+            this.chbASCII.UseVisualStyleBackColor = true;
+            this.chbASCII.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 46);
+            this.label1.Location = new System.Drawing.Point(12, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 2;
@@ -60,71 +62,84 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
-            // textBox1
+            // txtCaracterInferior
             // 
-            this.textBox1.Location = new System.Drawing.Point(97, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(28, 20);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtCaracterInferior.Location = new System.Drawing.Point(97, 72);
+            this.txtCaracterInferior.Name = "txtCaracterInferior";
+            this.txtCaracterInferior.Size = new System.Drawing.Size(28, 20);
+            this.txtCaracterInferior.TabIndex = 3;
+            this.txtCaracterInferior.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 75);
+            this.label2.Location = new System.Drawing.Point(12, 104);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Caracter SUP";
             // 
-            // textBox2
+            // txtCaracterSuperior
             // 
-            this.textBox2.Location = new System.Drawing.Point(97, 72);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(28, 20);
-            this.textBox2.TabIndex = 5;
+            this.txtCaracterSuperior.Location = new System.Drawing.Point(97, 101);
+            this.txtCaracterSuperior.Name = "txtCaracterSuperior";
+            this.txtCaracterSuperior.Size = new System.Drawing.Size(28, 20);
+            this.txtCaracterSuperior.TabIndex = 5;
+            // 
+            // btnCrearAFN
+            // 
+            this.btnCrearAFN.Location = new System.Drawing.Point(15, 184);
+            this.btnCrearAFN.Name = "btnCrearAFN";
+            this.btnCrearAFN.Size = new System.Drawing.Size(110, 33);
+            this.btnCrearAFN.TabIndex = 8;
+            this.btnCrearAFN.Text = "Crear AFN";
+            this.btnCrearAFN.UseVisualStyleBackColor = true;
+            this.btnCrearAFN.Click += new System.EventHandler(this.btnCrearAFN_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AnalizadorLexico.Properties.Resources.Basico;
+            this.pictureBox1.Location = new System.Drawing.Point(150, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(275, 220);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
+            // txtIdAFN
+            // 
+            this.txtIdAFN.Location = new System.Drawing.Point(97, 131);
+            this.txtIdAFN.Name = "txtIdAFN";
+            this.txtIdAFN.Size = new System.Drawing.Size(28, 20);
+            this.txtIdAFN.TabIndex = 11;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 105);
+            this.label3.Location = new System.Drawing.Point(12, 134);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "ID AFN";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(97, 102);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(28, 20);
-            this.textBox3.TabIndex = 7;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(15, 132);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 59);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Crear AFN";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Id de Automata";
             // 
             // Basico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 206);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
+            this.ClientSize = new System.Drawing.Size(437, 244);
+            this.Controls.Add(this.txtIdAFN);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnCrearAFN);
+            this.Controls.Add(this.txtCaracterSuperior);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCaracterInferior);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chbASCII);
             this.Name = "Basico";
             this.Text = "Basico";
+            this.Load += new System.EventHandler(this.Basico_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,13 +147,14 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chbASCII;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCaracterInferior;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCaracterSuperior;
+        private System.Windows.Forms.Button btnCrearAFN;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txtIdAFN;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
     }
 }

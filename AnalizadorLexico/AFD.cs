@@ -11,34 +11,27 @@ namespace AnalizadorLexico
     {
         //atributos
         public static HashSet<AFD> conjDeAFDs = new HashSet<AFD>();
-        Estado EdoIni; //ya
-        HashSet<Estado> EdosAFD = new HashSet<Estado>(); //ya
-        HashSet<Estado> EdosAccept = new HashSet<Estado>(); //ya
-        HashSet<char> alfabeto = new HashSet<char>(); //ya
+        public Estado EdoIni; //ya
+        public HashSet<Estado> EdosAFD = new HashSet<Estado>(); //ya
+        public HashSet<Estado> EdosAccept = new HashSet<Estado>(); //ya
+        public HashSet<char> alfabeto = new HashSet<char>(); //ya
         public int NumEstados;
         public int[,] TablaAFD;
-        public int idAFD; //ya
+        public int idAFD=0; //ya
 
         public AFD()
         {
-            this.TablaAFD = new int[0, 0];
-            idAFD = 0;
             EdoIni = null;
             EdosAFD.Clear();
             EdosAccept.Clear();
             alfabeto.Clear();
+            NumEstados = 0;
+            idAFD++;
         }
 
-        public AFD(int numeroEstados, int idAutFD) 
-        {
-            TablaAFD = new int[numeroEstados, 257];
-            for (int i = 0; i < numeroEstados; i++)
-                
-        }
-        
         public AFD crearAFD(HashSet<EstadoIdj> EdosAFDdeAFN, int numEdoAFD, HashSet<char>alfabe)
         {
-            int i = 0,k = 0;
+            int i = 0,k = 0,l = 0;
             Estado aux;
             AFD nuevoAFD = new AFD();
             nuevoAFD.alfabeto = alfabe; ////////////////
@@ -61,15 +54,17 @@ namespace AnalizadorLexico
                         tra.setTransicion((char)k, buscarEdo(conjIj.transicionesAFD[k]));
                         aux = buscarEdo(conjIj.j);
                         aux.Trans.Add(tra); ////////////////////////
-                    }
-                    if (conjIj.transicionesAFD[k] != -1 && k==256)
-                    {
-                        aux = buscarEdo(conjIj.j);
-                        aux.setToken(conjIj.transicionesAFD[k]);
-                        aux.setEdoAccept(true);
-                        _ = nuevoAFD.EdosAccept.Add(aux);
+                        TablaAFD[l,k]= aux.getIdEstado();
+                        if (k == 256)
+                        {
+                            aux = buscarEdo(conjIj.j);
+                            aux.setToken(conjIj.transicionesAFD[k]);
+                            aux.setEdoAccept(true);
+                            _ = nuevoAFD.EdosAccept.Add(aux);
+                        }
                     }
                 }
+                l++;
             }
 
             return nuevoAFD;
@@ -87,12 +82,12 @@ namespace AnalizadorLexico
             return null;
         }
 
-        public void LeerAFDdeArchivo(string nombreArchivo, int idAFD)
+        public void LeerAFDdeArchivo(string nombreArchivo, int idAFD1)
         {
             string linea;
             string[] datos;
             System.IO.StreamReader file = new System.IO.StreamReader(nombreArchivo);
-            idAFD = idAFD;
+            idAFD = idAFD1;
             while ((linea = file.ReadLine()) != null)
             {
                 datos = linea.Split(',');

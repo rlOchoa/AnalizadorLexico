@@ -12,45 +12,61 @@ namespace AnalizadorLexico
 {
     public partial class Compilador : Form
     {
+        public HashSet<AFN> afns = new HashSet<AFN>();
+        public HashSet<AFD> afds = new HashSet<AFD>();
+
         public Compilador()
         {
             InitializeComponent();
         }
 
+        public Compilador(HashSet<AFN> afns1, HashSet<AFD> afds1)
+        {
+            InitializeComponent();
+            this.afns = afns1;
+            this.afds = afds1;
+        }
+
         private void basicoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forms.Basico basic = new forms.Basico();
+            forms.Basico basic = new forms.Basico(afns,afds);
             basic.Show();
+            this.Hide();
         }
 
         private void unirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forms.Unir unir = new forms.Unir();
+            forms.Unir unir = new forms.Unir(afns,afds);
             unir.Show();
+            this.Hide();
         }
 
         private void cocatenarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forms.Concatenar concatenar = new forms.Concatenar();
+            forms.Concatenar concatenar = new forms.Concatenar(afns,afds);
             concatenar.Show();
+            this.Hide();
         }
 
         private void cerraduraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forms.CerraduraPos cerradurapos = new forms.CerraduraPos();
+            forms.CerraduraPos cerradurapos = new forms.CerraduraPos(afns,afds);
             cerradurapos.Show();
+            this.Hide();
         }
 
         private void cerradurakleeneToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            forms.CerraduraKleene cerradurakleene = new forms.CerraduraKleene();
+            forms.CerraduraKleene cerradurakleene = new forms.CerraduraKleene(afns,afds);
             cerradurakleene.Show();
+            this.Hide();
         }
 
         private void opcionalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forms.Opcional opcional = new forms.Opcional();
+            forms.Opcional opcional = new forms.Opcional(afns,afds);
             opcional.Show();
+            this.Hide();
         }
 
         private void eRAFNToolStripMenuItem_Click(object sender, EventArgs e)
@@ -85,12 +101,17 @@ namespace AnalizadorLexico
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            this.FormClosed += new FormClosedEventHandler(cerrarForm);
         }
 
         private void aFNsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cerrarForm(object sender, EventArgs e)
+        {
+             Application.Exit();
         }
     }
 }

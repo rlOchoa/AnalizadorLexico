@@ -21,7 +21,17 @@ namespace AnalizadorLexico
         //constructores
         public AFN()
         {
-            idAFN = 0;
+            idAFN=0;
+            EdoIni = null;
+            EdosAFN.Clear();
+            EdosAccept.Clear();
+            Alfabeto.Clear();
+            SeAgregoAFNUnionLexico = false;
+        }
+
+        public AFN(int id)
+        {
+            idAFN = id;
             EdoIni = null;
             EdosAFN.Clear();
             EdosAccept.Clear();

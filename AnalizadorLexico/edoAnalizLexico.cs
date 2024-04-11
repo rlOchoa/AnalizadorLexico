@@ -8,54 +8,14 @@ namespace AnalizadorLexico
 {
     internal class edoAnalizLexico
     {
-        public void charActual()
-        {
-            
-        }
+        public int token, edoActual, edoTransicion, iniLexema, finLexema, iCharAct;
+        public string cadSigma;
+        public char charActual;
+        public string Lexema;
+        public bool pasEdoAccept;
+        public Stack<int> Pila = new Stack<int>();
+        public AFD AutomataFD;
 
-        public void edoActual()
-        {
-
-        }
-
-        public void edoTransicion()
-        {
-
-        }
-
-        public void finLexema()
-        {
-
-        }
-
-        public void iChar()
-        {
-
-        }
-
-        public void iniLexema()
-        {
-
-        }
-
-        public void Lexema()
-        {
-
-        }
-
-        public void pasEdoAccept()
-        {
-
-        }
-
-        public void token()
-        {
-
-        }
-
-        public void Pila()
-        {
-
-        }
+        
     }
 }

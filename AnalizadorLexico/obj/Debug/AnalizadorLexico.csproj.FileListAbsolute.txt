@@ -1,0 +1,16 @@
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\bin\Debug\AnalizadorLexico.exe.config
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\bin\Debug\AnalizadorLexico.exe
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\bin\Debug\AnalizadorLexico.pdb
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.csproj.AssemblyReference.cache
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.Compilador.resources
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.Basico.resources
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.Properties.Resources.resources
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.csproj.GenerateResource.cache
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.csproj.CoreCompileInputs.cache
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.exe
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.pdb
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.Unir.resources
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.Concatenar.resources
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.CerraduraPos.resources
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.CerraduraKleene.resources
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.Opcional.resources
