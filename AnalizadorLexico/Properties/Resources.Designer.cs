@@ -103,6 +103,16 @@ namespace AnalizadorLexico.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConvertirAFNaAFD {
+            get {
+                object obj = ResourceManager.GetObject("ConvertirAFNaAFD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Opcional {
             get {
                 object obj = ResourceManager.GetObject("Opcional", resourceCulture);
@@ -116,6 +126,16 @@ namespace AnalizadorLexico.Properties {
         internal static System.Drawing.Bitmap Union {
             get {
                 object obj = ResourceManager.GetObject("Union", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UnionEspecial {
+            get {
+                object obj = ResourceManager.GetObject("UnionEspecial", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

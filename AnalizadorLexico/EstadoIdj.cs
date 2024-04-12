@@ -11,7 +11,7 @@ namespace AnalizadorLexico
         //atributos
         public int j;
         public HashSet<Estado> conIj;
-        public int[] transicionesAFD;
+        public int[] transicionesAFD = new int[257];
 
         public EstadoIdj()
         {

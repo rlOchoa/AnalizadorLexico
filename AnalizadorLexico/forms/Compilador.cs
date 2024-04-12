@@ -77,14 +77,16 @@ namespace AnalizadorLexico
 
         private void unionParaAnalizadorLexicoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forms.UnionALex unionALex = new forms.UnionALex();
+            forms.UnionALex unionALex = new forms.UnionALex(afns,afds);
             unionALex.Show();
+            this.Hide();
         }
 
         private void convertirAFNAFDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forms.ConverAFNAFD converAFNAFD = new forms.ConverAFNAFD();
+            forms.ConverAFNAFD converAFNAFD = new forms.ConverAFNAFD(afns,afds);
             converAFNAFD.Show();
+            this.Hide();
         }
 
         private void analizarUnaCadenaToolStripMenuItem_Click(object sender, EventArgs e)

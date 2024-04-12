@@ -10,7 +10,7 @@ namespace AnalizadorLexico
     public class AFN
     {
         //Atributos
-        public static HashSet<AFN> conjDeAFNs = new HashSet<AFN>();
+        public HashSet<AFN> conjDeAFNs = new HashSet<AFN>();
         Estado EdoIni;
         HashSet<Estado> EdosAFN = new HashSet<Estado>();
         HashSet<Estado> EdosAccept = new HashSet<Estado>();
@@ -309,9 +309,43 @@ namespace AnalizadorLexico
             return operacionEpsilon(mover(e, a));
         }
 
-        public void unionEspecialAFNs(AFN afn, int Token)
+        public AFN unionEspecialAFNs(HashSet<AFN> afnsObtenidos)
         {
-            Estado e;
+            Estado e = new Estado(); //se crea nuevo estado
+            AFN nuevoAFN = new AFN();
+            int tok = 10;
+            bool seAgregoid = false;
+
+            foreach (AFN aux in afnsObtenidos)
+            {
+                Transicion t = new Transicion(SimbolosEspeciales.EPSILON,aux.EdoIni);
+                e.Trans.Add(t); //se agrega por cada AFN una transicion epsilon del estado creado
+                                //al estado inicial del AFN
+                if (!seAgregoid)
+                {
+                    nuevoAFN.idAFN = aux.idAFN;
+                    seAgregoid = true; //se agrega el id del primer elemento encontrado
+                }
+                foreach(Estado edoAux in aux.EdosAccept)
+                {
+                    edoAux.setEdoAccept(true);
+                    edoAux.setToken(tok);
+                    //se reafirma que el estado sea estado de aceptacion, y se le agrega un token
+                    //autoincrementable de 10 en 10
+                }
+                nuevoAFN.Alfabeto.UnionWith(aux.Alfabeto); // se agrega el alfabeto de aux al nuevo AFN
+                nuevoAFN.EdosAFN.UnionWith(aux.EdosAFN); //se agregan los estados del aux al nuevo AFN
+                nuevoAFN.EdosAccept.UnionWith(aux.EdosAccept); //se agregan los estados de aceptacion del aux al nuevo AFN
+                tok = tok + 10;
+            }
+            nuevoAFN.EdoIni = e;
+            nuevoAFN.EdosAFN.Add(e);
+          
+            return nuevoAFN;
+
+            //nuevoAFN.SeAgregoAFNUnionLexico = true;
+
+            /*Estado e;
             if (!this.SeAgregoAFNUnionLexico)
             {
                 this.EdosAFN.Clear();
@@ -333,21 +367,17 @@ namespace AnalizadorLexico
             }
             this.EdosAccept.UnionWith(afn.EdosAccept);
             this.EdosAFN.UnionWith(afn.EdosAFN);
-            this.Alfabeto.UnionWith(afn.Alfabeto);
+            this.Alfabeto.UnionWith(afn.Alfabeto);*/
 
         }
 
         public int indiceCaracter(char[] arregloAlfabeto, char c)
         {
-            int aux = 0;
-            for (int i = 0; i < arregloAlfabeto.Length; i++)
-            {
-                if (arregloAlfabeto[i] == c)
-                {
-                    aux = i;
-                }
-            }
-            return aux;
+            int i;
+            for (i=0; i < arregloAlfabeto.Length;i++)
+                if (arregloAlfabeto[i]==c)
+                    return i;
+            return -1;
         }
 
         public AFD convAFNaAFD()
@@ -358,17 +388,17 @@ namespace AnalizadorLexico
             EstadoIdj Ij, Ik;
             bool existe;
 
-            HashSet<Estado> conjAux = new HashSet<Estado> ();
+            HashSet<Estado> conjAux = new HashSet<Estado>();
             HashSet<EstadoIdj> EdosAFD = new HashSet<EstadoIdj> ();
-            Queue<EstadoIdj> EdosSinAnalizar = new Queue<EstadoIdj> (); 
+            Queue<EstadoIdj> EdosSinAnalizar = new Queue<EstadoIdj> ();
 
             EdosAFD.Clear ();
             EdosSinAnalizar.Clear();
 
-            cardinAlfabeto = Alfabeto.Count;
+            cardinAlfabeto = this.Alfabeto.Count;
             arrAlfabeto = new char[cardinAlfabeto];
             i = 0;
-            foreach(char c in arrAlfabeto)
+            foreach(char c in this.Alfabeto)
             {
                 arrAlfabeto[i++] = c;
             }
@@ -418,21 +448,8 @@ namespace AnalizadorLexico
                 }
             }
             numEdoAFD = j;
-            foreach(EstadoIdj eafd in EdosAFD)
-            {
-                HashSet<Estado> aux = eafd.conIj;
-                aux.IntersectWith(this.EdosAccept);
-                if (aux != null)
-                {
-                    foreach (Estado e in this.EdosAccept)
-                    {
-                        eafd.transicionesAFD[256]=e.getToken();
-                    }
-                }
-            }
             AFD nuevoAFD = new AFD();
-            nuevoAFD.crearAFD(EdosAFD,numEdoAFD,this.Alfabeto);
-            return nuevoAFD;
+            return nuevoAFD.crearAFD(EdosAFD,numEdoAFD,this.Alfabeto,this.EdoIni);
         }
     }
 }

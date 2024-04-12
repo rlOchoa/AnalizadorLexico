@@ -144,8 +144,14 @@
     <EmbeddedResource Include="forms\Concatenar.resx">
       <DependentUpon>Concatenar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\ConverAFNAFD.resx">
+      <DependentUpon>ConverAFNAFD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Opcional.resx">
       <DependentUpon>Opcional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\UnionALex.resx">
+      <DependentUpon>UnionALex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Unir.resx">
       <DependentUpon>Unir.cs</DependentUpon>
@@ -193,6 +199,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Opcional.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UnionEspecial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ConvertirAFNaAFD.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

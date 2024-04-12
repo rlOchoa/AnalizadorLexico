@@ -10,9 +10,9 @@ namespace AnalizadorLexico
     {
         //Atributos de Estado
         static int contadorIdEstado = 0;
-        private int idEstado1;
-        private bool edoAccept1;
-        private int token1;
+        private int idEstado1; // ya
+        private bool edoAccept1; // ya
+        private int token1; // ya
         private HashSet<Transicion> trans1 = new HashSet<Transicion>();
 
         //Constructor de Estado
