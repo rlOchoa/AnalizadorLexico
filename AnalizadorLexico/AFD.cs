@@ -38,11 +38,11 @@ namespace AnalizadorLexico
             AFD nuevoAFD = new AFD();
             nuevoAFD.TablaAFD = new int[NumEstados+1, 257];
             nuevoAFD.alfabeto = alfabe; // pasa alfabeto
-            foreach (EstadoIdj conjedos in EdosAFDdeAFN)
+            foreach (EstadoIdj conjEdos in EdosAFDdeAFN)
             {
                 Estado e = new Estado();
-                e.setIdEstado(conjedos.j);
-                foreach(Estado estado in conjedos.conIj)
+                e.setIdEstado(conjEdos.j);
+                foreach(Estado estado in conjEdos.conIj)
                 {
                     if (estado.getEdoAccept())
                     {
@@ -58,7 +58,7 @@ namespace AnalizadorLexico
                 }
                 for (k = 0; k < 257; k++)
                 {
-                    nuevoAFD.TablaAFD[l, k] = conjedos.transicionesAFD[k];
+                    nuevoAFD.TablaAFD[l, k] = conjEdos.transicionesAFD[k];
                 }
                 l++;
 
