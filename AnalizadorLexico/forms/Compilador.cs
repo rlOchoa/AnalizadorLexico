@@ -91,8 +91,9 @@ namespace AnalizadorLexico
 
         private void analizarUnaCadenaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forms.AnalizCadena analizarCadena = new forms.AnalizCadena();
+            forms.AnalizCadena analizarCadena = new forms.AnalizCadena(afns,afds);
             analizarCadena.Show();
+            this.Hide();
         }
 
         private void probarAnalizadorLéxicoToolStripMenuItem_Click(object sender, EventArgs e)

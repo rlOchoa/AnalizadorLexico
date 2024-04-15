@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace AnalizadorLexico
 {
-    public class EstadoIdj
+    public class EdoIj
     {
         //atributos
         public int j;
         public HashSet<Estado> conIj;
         public int[] transicionesAFD = new int[257];
 
-        public EstadoIdj()
+        public EdoIj()
         {
             j = -1;
             conIj = new HashSet<Estado>();

@@ -41,8 +41,6 @@ namespace AnalizadorLexico.forms
             {
                 if (aux.idAFN == combo)
                 {
-                    AFD newAFD = new AFD();
-                    newAFD = aux.convAFNaAFD();
                     afds.Add(aux.convAFNaAFD());
                     Compilador compi = new Compilador(afns, afds);
                     MessageBox.Show("Se hizo Convirtio al AFN " + combo +" en AFD");

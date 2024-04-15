@@ -52,7 +52,7 @@
     <Compile Include="AnalizLexico.cs" />
     <Compile Include="edoAnalizLexico.cs" />
     <Compile Include="Estado.cs" />
-    <Compile Include="EstadoIdj.cs" />
+    <Compile Include="EdoIj.cs" />
     <Compile Include="forms\Compilador.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +129,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimbolosEspeciales.cs" />
     <Compile Include="Transicion.cs" />
+    <EmbeddedResource Include="forms\AnalizCadena.resx">
+      <DependentUpon>AnalizCadena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\CerraduraKleene.resx">
       <DependentUpon>CerraduraKleene.cs</DependentUpon>
     </EmbeddedResource>

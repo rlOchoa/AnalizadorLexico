@@ -86,7 +86,7 @@ namespace AnalizadorLexico
 
         public Estado getEdoTrans(char s)
         {
-            if (simInf1 <= s && simSup1 >= s)
+            if (simInf1 >= s && simSup1 <= s)
             {
                 return Edo1;
             }

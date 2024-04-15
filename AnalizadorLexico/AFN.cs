@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using AnalizadorLexico;
 
 namespace AnalizadorLexico
@@ -272,36 +273,41 @@ namespace AnalizadorLexico
             return conjEstados;
         }
 
-        public HashSet<Estado> mover(Estado e, char a)
+        public HashSet<Estado> mover(Estado Edo, char simb)
         {
-            HashSet<Estado> conjEstados = new HashSet<Estado>(); //Conjunto de estados (C)
-            conjEstados.Clear();
+            HashSet<Estado> c = new HashSet<Estado>(); //Conjunto de estados (C)
+            Estado Aux;
+            c.Clear();
 
-            foreach (Transicion t in e.Trans)
+            foreach (Transicion t in Edo.Trans)
             {
-                
-                if (t.getSimInf() == a)
+                Aux = t.getEdoTrans(simb);
+                if (Aux != null)
                 {
-                    _ = conjEstados.Add(e);
+                    _ = c.Add(Aux);
                 }
             }
-            return conjEstados;
+            return c;
         }
 
-        public HashSet<Estado> mover(HashSet<Estado> edos, char a)
+        public HashSet<Estado> mover(HashSet<Estado> Edos, char simb)
         {
-            HashSet<Estado> conjEstados = new HashSet<Estado>();
-            foreach (Estado e in edos)
+            HashSet<Estado> c = new HashSet<Estado>();
+            Estado Aux;
+            c.Clear();
+
+            foreach (Estado edo in Edos)
             {
-                foreach (Transicion t in e.Trans)
+                foreach (Transicion t in edo.Trans)
                 {
-                    if (t.getSimInf() == a)
+                    Aux = t.getEdoTrans(simb);
+                    if (Aux != null)
                     {
-                        _ = conjEstados.Add(e);
+                        _ = c.Add(Aux);
                     }
                 }
             }
-            return conjEstados;
+            return c;
         }
 
         public HashSet<Estado> irA(HashSet<Estado> e,char a)
@@ -376,21 +382,22 @@ namespace AnalizadorLexico
             int i;
             for (i=0; i < arregloAlfabeto.Length;i++)
                 if (arregloAlfabeto[i]==c)
-                    return i;
+                    return (int)c;
             return -1;
         }
 
         public AFD convAFNaAFD()
         {
             int cardinAlfabeto, numEdoAFD;
-            int i, j, r;
+            int i, j, r,k,l=0;
             char[] arrAlfabeto;
-            EstadoIdj Ij, Ik;
+            EdoIj Ij, Ik;
             bool existe;
 
             HashSet<Estado> conjAux = new HashSet<Estado>();
-            HashSet<EstadoIdj> EdosAFD = new HashSet<EstadoIdj> ();
-            Queue<EstadoIdj> EdosSinAnalizar = new Queue<EstadoIdj> ();
+            HashSet<EdoIj> EdosAFD = new HashSet<EdoIj> ();
+            Queue<EdoIj> EdosSinAnalizar = new Queue<EdoIj> ();
+            AFD nuevoAFD = new AFD();
 
             EdosAFD.Clear ();
             EdosSinAnalizar.Clear();
@@ -403,7 +410,7 @@ namespace AnalizadorLexico
                 arrAlfabeto[i++] = c;
             }
             j = 0;
-            Ij = new EstadoIdj()
+            Ij = new EdoIj()
             {
                 j = j,
                 conIj = operacionEpsilon(this.EdoIni)
@@ -418,7 +425,7 @@ namespace AnalizadorLexico
 
                 foreach(char c in Alfabeto)
                 {
-                    Ik = new EstadoIdj()
+                    Ik = new EdoIj()
                     {
                         conIj = irA(Ij.conIj,c)
                     };
@@ -426,7 +433,7 @@ namespace AnalizadorLexico
                     if (Ik.conIj.Count() == 0)
                         continue;
                     existe = false;
-                    foreach(EstadoIdj I in EdosAFD)
+                    foreach(EdoIj I in EdosAFD)
                     {
                         if (I.conIj.SetEquals(Ik.conIj))
                         {
@@ -448,8 +455,62 @@ namespace AnalizadorLexico
                 }
             }
             numEdoAFD = j;
-            AFD nuevoAFD = new AFD();
-            return nuevoAFD.crearAFD(EdosAFD,numEdoAFD,this.Alfabeto,this.EdoIni);
+            //MessageBox.Show("Parar en AFN");
+
+            nuevoAFD.TablaAFD = new int[numEdoAFD, 257];
+            nuevoAFD.alfabeto = this.Alfabeto; // pasa alfabeto
+
+            foreach (EdoIj conjEdos in EdosAFD)
+            {
+                Estado e = new Estado();
+                e.setIdEstado(conjEdos.j);
+                foreach (Estado estado in conjEdos.conIj)
+                {
+
+                    if (estado.getEdoAccept())
+                    {
+
+                        e.setEdoAccept(true);
+                        e.setToken(estado.getToken());
+                        int tokenAuxiliar = estado.getToken();
+                        nuevoAFD.TablaAFD[l, 256] = tokenAuxiliar;
+                        MessageBox.Show("Parar Token " + tokenAuxiliar + " en la fila " + l);
+                        _ = nuevoAFD.EdosAccept.Add(e);
+                    }
+                    if (estado.Equals(this.EdoIni))
+                    {
+                        nuevoAFD.EdoIni = estado;
+                    }
+                }
+                for (k = 0; k < 256; k++)
+                {
+                    nuevoAFD.TablaAFD[l, k] = conjEdos.transicionesAFD[k];
+                }
+                l++;
+                _ = nuevoAFD.EdosAFD.Add(e);
+            }
+            i = 0;
+            foreach (Estado e in nuevoAFD.EdosAFD)
+            {
+                for (k = 0; k < 257; k++)
+                {
+                    if (nuevoAFD.TablaAFD[i, k] != -1)
+                    {
+                        foreach (Estado edo in nuevoAFD.EdosAFD)
+                        {
+                            if (edo.getIdEstado() == nuevoAFD.TablaAFD[i, k])
+                            {
+                                Transicion t = new Transicion((char)k, edo);
+                                e.Trans.Add(t);
+                            }
+
+                        }
+                    }
+                }
+                i++;
+            }
+            return nuevoAFD;
+            //return nuevoAFD;
         }
     }
 }

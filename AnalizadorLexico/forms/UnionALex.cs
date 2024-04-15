@@ -65,23 +65,24 @@ namespace AnalizadorLexico.forms
             foreach (String afn in clbAFN.CheckedItems)
             {
                 int idAFNSelected = int.Parse(afn);
-                MessageBox.Show("El elemento "+idAFNSelected+" fue selecionado");
+                //MessageBox.Show("El elemento "+idAFNSelected+" fue selecionado");
                 foreach (AFN aux in afns)
                 {
                     if (aux.idAFN == idAFNSelected)
                     {
                         auxiliar.Add(aux);
-                        MessageBox.Show("Se agrego el AFN "+idAFNSelected);
+                        //MessageBox.Show("Se agrego el AFN "+idAFNSelected);
                     }
                 }
             }
             foreach(AFN aux in auxiliar)
             {
                 afns.Remove(aux);
-                MessageBox.Show("Se elimino el AFN " + aux.idAFN);
+                //MessageBox.Show("Se elimino el AFN " + aux.idAFN);
             }
 
-            afns.Add(nuevoAFn.unionEspecialAFNs(auxiliar)); 
+            afns.Add(nuevoAFn.unionEspecialAFNs(auxiliar));
+            MessageBox.Show("Se unieron los AFN y se agregaron Tokens");
             Compilador compi = new Compilador(afns, afds);
             compi.Show();
             this.Hide();

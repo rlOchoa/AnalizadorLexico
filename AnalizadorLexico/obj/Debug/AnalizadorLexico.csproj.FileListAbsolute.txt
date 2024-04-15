@@ -34,3 +34,4 @@ C:\Compiladoriux\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.cs
 C:\Compiladoriux\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.csproj.CoreCompileInputs.cache
 C:\Compiladoriux\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.exe
 C:\Compiladoriux\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.pdb
+C:\Users\Xehcl\OneDrive\Documentos\AnalizadorLexico\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.AnalizCadena.resources

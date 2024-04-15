@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AnalizadorLexico
 {
@@ -31,24 +32,28 @@ namespace AnalizadorLexico
 
         
 
-        public AFD crearAFD(HashSet<EstadoIdj> EdosAFDdeAFN, int numEdoAFD, HashSet<char>alfabe,Estado edoinicioAFN)
+        /* AFD crearAFD(HashSet<EdoIj> EdosAFD, int numEdoAFD, HashSet<char>alfabe,Estado edoinicioAFN)
         {
             int i = 0,k = 0,l = 0;
             Estado aux;
             AFD nuevoAFD = new AFD();
-            nuevoAFD.TablaAFD = new int[NumEstados+1, 257];
+            nuevoAFD.TablaAFD = new int[numEdoAFD, 257];
             nuevoAFD.alfabeto = alfabe; // pasa alfabeto
-            foreach (EstadoIdj conjEdos in EdosAFDdeAFN)
+            foreach (EdoIj conjEdos in EdosAFD)
             {
                 Estado e = new Estado();
                 e.setIdEstado(conjEdos.j);
                 foreach(Estado estado in conjEdos.conIj)
                 {
+                        
                     if (estado.getEdoAccept())
                     {
+
                         e.setEdoAccept(true);
                         e.setToken(estado.getToken());
-                        nuevoAFD.TablaAFD[l, 256] = estado.getToken();
+                        int tokenAuxiliar = estado.getToken();
+                        nuevoAFD.TablaAFD[l, 256] = tokenAuxiliar;
+                        MessageBox.Show("Parar Token "+tokenAuxiliar+" en la fila "+l);
                         _ = nuevoAFD.EdosAccept.Add(e);
                     }
                     if (estado.Equals(edoinicioAFN))
@@ -61,7 +66,6 @@ namespace AnalizadorLexico
                     nuevoAFD.TablaAFD[l, k] = conjEdos.transicionesAFD[k];
                 }
                 l++;
-
                 _ = nuevoAFD.EdosAFD.Add(e);
             }
             i = 0;
@@ -84,10 +88,8 @@ namespace AnalizadorLexico
                 }
                 i++;
             }
-
-
             return nuevoAFD;
-        }
+        }*/
 
 
 
