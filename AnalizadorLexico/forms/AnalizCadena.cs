@@ -109,7 +109,9 @@ namespace AnalizadorLexico.forms
         {
             AFD AFDSelected = new AFD();
             int idAfdSelected = int.Parse(cmbAFD.Text);
-            int token=0;
+            int [] token = new int[1000];
+            string cadenafinal = "";
+            int i = 0;
             bool cadenaAceptada = false;
 
             foreach (AFD aux in afds)
@@ -119,20 +121,31 @@ namespace AnalizadorLexico.forms
                     AFDSelected = aux;
                 }
             }
+
             AnalizLexico anaLex = new AnalizLexico(txtCadena.Text, AFDSelected);
-            token = anaLex.yylex();    
-            foreach(Estado edo in AFDSelected.EdosAccept)
+            //token[i] = anaLex.yylex();
+            //cadenafinal= cadenafinal + token[i].ToString()+",";
+            //i++;
+
+            while ((token[i]=anaLex.yylex()) != SimbolosEspeciales.FIN)
             {
-                if (edo.getToken()==token)
+                cadenafinal = cadenafinal + token[i].ToString() + ",";
+                i++;
+            }
+            MessageBox.Show(cadenafinal);
+
+            /*foreach(Estado edo in AFDSelected.EdosAccept)
+            {
+                if (edo.getToken()==token[i])
                 {
                     cadenaAceptada=true;
-                    MessageBox.Show("La cadena es aceptada por el token " + token +" desde el caracter inicial "+anaLex.iniLexema+" hasta el caracter final "+anaLex.finLexema);
+                    //MessageBox.Show("La cadena es aceptada por el token " + token +" desde el caracter inicial "+anaLex.iniLexema+" hasta el caracter final "+anaLex.finLexema);
                 }
             }
             if (!cadenaAceptada)
             {
                 MessageBox.Show("La cadena fue rechazada con codigo de error "+token);
-            }
+            }*/
         }
 
         public String leerArchivoCadena(String txtName)

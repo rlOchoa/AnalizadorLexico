@@ -115,7 +115,6 @@ namespace AnalizadorLexico
             return true;
         }
 
-
         public string cadenaXAnalizar()
         {
             return cadSigma.Substring(iCharAct, cadSigma.Length - iCharAct);
@@ -129,7 +128,7 @@ namespace AnalizadorLexico
                 if (iCharAct >= cadSigma.Length)
                 {
                     Lexema = "";
-                    return SimbolosEspeciales.OVERSIZED;
+                    return SimbolosEspeciales.FIN;
                 }
                 iniLexema = iCharAct;
                 edoActual = 0;

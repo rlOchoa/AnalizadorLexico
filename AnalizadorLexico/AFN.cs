@@ -145,15 +145,18 @@ namespace AnalizadorLexico
             Estado eFinal = new Estado();
 
             _ = eInicial.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, this.EdoIni));
+            //_ = eInicial.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eFinal)); //Added
             foreach (Estado e in this.EdosAccept)
             {
                 _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eFinal));
-                //_ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, this.EdoIni)); //Missing and asking for clarification
+                _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, this.EdoIni)); //Added
                 e.setEdoAccept(false); //Added
             }
 
+            _ = eFinal.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, eInicial)); // ?
+
             this.EdoIni = eInicial;
-            eFinal.setEdoAccept(true); //Added
+            eFinal.setEdoAccept(true);
             this.EdosAccept.Clear();
             _ = this.EdosAccept.Add(eFinal);
             _ = this.EdosAFN.Add(eInicial);
@@ -467,7 +470,7 @@ namespace AnalizadorLexico
                 foreach (Estado estado in conjEdos.conIj)
                 {
 
-                    if (estado.getEdoAccept())
+                    if (estado.getEdoAccept()) //TODO: Corregir parte, con la observacion del profe, de intersectar el estado IJ, con los estados de aceptacion del AFN
                     {
 
                         e.setEdoAccept(true);
