@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AnalizadorLexico
 {
     class AnalizLexico
     {
-        int token, edoActual, edoTransicion, iniLexema, finLexema, iCharAct;
-        string cadSigma;
-        char charActual;
+        public int token, edoActual, edoTransicion, iniLexema, finLexema, iCharAct;
+        public string cadSigma;
+        public char charActual;
         public string Lexema;
-        bool pasEdoAccept;
-        Stack<int> Pila = new Stack<int>();
-        AFD AutomataFD;
+        public bool pasEdoAccept;
+        public Stack<int> Pila = new Stack<int>();
+        public AFD AutomataFD;
 
         public AnalizLexico()
         {
@@ -27,7 +28,7 @@ namespace AnalizadorLexico
             AutomataFD = null;
         }
 
-        public AnalizLexico(string sigma, string archivoAFD, int idAFD)
+        /*public AnalizLexico(string sigma, string archivoAFD, int idAFD)
         {
             AutomataFD = new AFD();
             cadSigma = sigma;
@@ -38,9 +39,9 @@ namespace AnalizadorLexico
             token = -1;
             Pila.Clear();
             AutomataFD.LeerAFDdeArchivo(archivoAFD, idAFD);
-        }
+        }*/
 
-        public AnalizLexico(string sigma, string archivoAFD)
+        /*public AnalizLexico(string sigma, AFD AFDNoArchivo)
         {
             AutomataFD = new AFD();
             cadSigma = sigma;
@@ -50,10 +51,11 @@ namespace AnalizadorLexico
             iCharAct = 0;
             token = -1;
             Pila.Clear();
-            AutomataFD.LeerAFDdeArchivo(archivoAFD, -1);
-        }
+            AutomataFD = AFDNoArchivo;
+        }*/
 
-        public AnalizLexico(string archivoAFD, int idAFD)
+        
+        /*public AnalizLexico(string archivoAFD, int idAFD)
         {
             AutomataFD = new AFD();
             cadSigma = "";
@@ -64,9 +66,8 @@ namespace AnalizadorLexico
             token = -1;
             Pila.Clear();
             AutomataFD.LeerAFDdeArchivo(archivoAFD, idAFD);
-        }
-
-        public AnalizLexico(string sigma, AFD AutFD)
+        }*/
+        public void setSigma(string sigma)
         {
             cadSigma = sigma;
             pasEdoAccept = false;
@@ -75,6 +76,11 @@ namespace AnalizadorLexico
             iCharAct = 0;
             token = -1;
             Pila.Clear();
+        }
+
+        public AnalizLexico(string sigma, AFD AutFD)
+        {
+            setSigma(sigma);
             AutomataFD = AutFD;
         }
 
@@ -109,16 +115,6 @@ namespace AnalizadorLexico
             return true;
         }
 
-        public void setSigma(string sigma)
-        {
-            cadSigma = sigma;
-            pasEdoAccept = false;
-            iniLexema = 0;
-            finLexema = -1;
-            iCharAct = 0;
-            token = -1;
-            Pila.Clear();
-        }
 
         public string cadenaXAnalizar()
         {
@@ -133,7 +129,7 @@ namespace AnalizadorLexico
                 if (iCharAct >= cadSigma.Length)
                 {
                     Lexema = "";
-                    return SimbolosEspeciales.FIN;
+                    return SimbolosEspeciales.OVERSIZED;
                 }
                 iniLexema = iCharAct;
                 edoActual = 0;
@@ -143,6 +139,7 @@ namespace AnalizadorLexico
 
                 while (iCharAct < cadSigma.Length)
                 {
+                    //MessageBox.Show("iCharAct es "+iCharAct+" y longitud es "+cadSigma.Length);
                     charActual = cadSigma[iCharAct];
                     edoTransicion = AutomataFD.TablaAFD[edoActual, charActual];
                     if (edoTransicion != -1)

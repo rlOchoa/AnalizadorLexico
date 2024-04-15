@@ -474,7 +474,7 @@ namespace AnalizadorLexico
                         e.setToken(estado.getToken());
                         int tokenAuxiliar = estado.getToken();
                         nuevoAFD.TablaAFD[l, 256] = tokenAuxiliar;
-                        MessageBox.Show("Parar Token " + tokenAuxiliar + " en la fila " + l);
+                        MessageBox.Show("Se entrego Token " + tokenAuxiliar + " en la fila " + l);
                         _ = nuevoAFD.EdosAccept.Add(e);
                     }
                     if (estado.Equals(this.EdoIni))
@@ -509,6 +509,7 @@ namespace AnalizadorLexico
                 }
                 i++;
             }
+            nuevoAFD.NumEstados = i;
             return nuevoAFD;
             //return nuevoAFD;
         }

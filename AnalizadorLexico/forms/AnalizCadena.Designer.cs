@@ -37,7 +37,12 @@
             this.lblRuta = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
-            this.analizarcad = new System.Windows.Forms.Button();
+            this.btnGuardarAFD = new System.Windows.Forms.Button();
+            this.btnAnalizar = new System.Windows.Forms.Button();
+            this.txtidAFD = new System.Windows.Forms.TextBox();
+            this.btnCargarArchivoAFD = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAFD)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +72,7 @@
             this.dataGridAFD.Location = new System.Drawing.Point(15, 51);
             this.dataGridAFD.Name = "dataGridAFD";
             this.dataGridAFD.ReadOnly = true;
-            this.dataGridAFD.Size = new System.Drawing.Size(773, 258);
+            this.dataGridAFD.Size = new System.Drawing.Size(789, 258);
             this.dataGridAFD.TabIndex = 2;
             // 
             // btnCArgarAFD
@@ -101,9 +106,9 @@
             this.lblRuta.AutoSize = true;
             this.lblRuta.Location = new System.Drawing.Point(301, 329);
             this.lblRuta.Name = "lblRuta";
-            this.lblRuta.Size = new System.Drawing.Size(70, 13);
+            this.lblRuta.Size = new System.Drawing.Size(84, 13);
             this.lblRuta.TabIndex = 6;
-            this.lblRuta.Text = "Subir Archivo";
+            this.lblRuta.Text = "Ruta de Archivo";
             // 
             // openFileDialog1
             // 
@@ -119,22 +124,66 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // analizarcad
+            // btnGuardarAFD
             // 
-            this.analizarcad.Location = new System.Drawing.Point(123, 352);
-            this.analizarcad.Name = "analizarcad";
-            this.analizarcad.Size = new System.Drawing.Size(83, 23);
-            this.analizarcad.TabIndex = 8;
-            this.analizarcad.Text = "Analizar";
-            this.analizarcad.UseVisualStyleBackColor = true;
-            this.analizarcad.Click += new System.EventHandler(this.analizarcad_Click);
+            this.btnGuardarAFD.Location = new System.Drawing.Point(283, 10);
+            this.btnGuardarAFD.Name = "btnGuardarAFD";
+            this.btnGuardarAFD.Size = new System.Drawing.Size(88, 23);
+            this.btnGuardarAFD.TabIndex = 9;
+            this.btnGuardarAFD.Text = "Guardar AFD";
+            this.btnGuardarAFD.UseVisualStyleBackColor = true;
+            this.btnGuardarAFD.Click += new System.EventHandler(this.btnGuardarAFD_Click);
+            // 
+            // btnAnalizar
+            // 
+            this.btnAnalizar.Location = new System.Drawing.Point(18, 361);
+            this.btnAnalizar.Name = "btnAnalizar";
+            this.btnAnalizar.Size = new System.Drawing.Size(196, 23);
+            this.btnAnalizar.TabIndex = 10;
+            this.btnAnalizar.Text = "Analizar Cadena";
+            this.btnAnalizar.UseVisualStyleBackColor = true;
+            this.btnAnalizar.Click += new System.EventHandler(this.btnAnalizar_Click);
+            // 
+            // txtidAFD
+            // 
+            this.txtidAFD.Location = new System.Drawing.Point(545, 12);
+            this.txtidAFD.Name = "txtidAFD";
+            this.txtidAFD.Size = new System.Drawing.Size(100, 20);
+            this.txtidAFD.TabIndex = 11;
+            // 
+            // btnCargarArchivoAFD
+            // 
+            this.btnCargarArchivoAFD.Location = new System.Drawing.Point(651, 9);
+            this.btnCargarArchivoAFD.Name = "btnCargarArchivoAFD";
+            this.btnCargarArchivoAFD.Size = new System.Drawing.Size(153, 23);
+            this.btnCargarArchivoAFD.TabIndex = 12;
+            this.btnCargarArchivoAFD.Text = "Cargar AFD desde Archivo";
+            this.btnCargarArchivoAFD.UseVisualStyleBackColor = true;
+            this.btnCargarArchivoAFD.Click += new System.EventHandler(this.btnCargarArchivoAFD_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(377, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(162, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Ingrese id de AFD desde archivo";
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialogAFD";
             // 
             // AnalizCadena
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.analizarcad);
+            this.ClientSize = new System.Drawing.Size(833, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnCargarArchivoAFD);
+            this.Controls.Add(this.txtidAFD);
+            this.Controls.Add(this.btnAnalizar);
+            this.Controls.Add(this.btnGuardarAFD);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblRuta);
             this.Controls.Add(this.label2);
@@ -163,6 +212,11 @@
         private System.Windows.Forms.Label lblRuta;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button analizarcad;
+        private System.Windows.Forms.Button btnGuardarAFD;
+        private System.Windows.Forms.Button btnAnalizar;
+        private System.Windows.Forms.TextBox txtidAFD;
+        private System.Windows.Forms.Button btnCargarArchivoAFD;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }

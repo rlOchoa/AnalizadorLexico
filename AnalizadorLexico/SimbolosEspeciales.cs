@@ -12,6 +12,7 @@ namespace AnalizadorLexico
         public static char FIN = (char)0;
         public static int ERROR = 20000;
         public static int OMITIR = 20001;
+        public static int OVERSIZED = 20002;
         public static int TODOOK = 0;
     }
 }

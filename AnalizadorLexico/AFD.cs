@@ -14,9 +14,9 @@ namespace AnalizadorLexico
         public static HashSet<AFD> conjDeAFDs = new HashSet<AFD>();
         public Estado EdoIni; //ya
         public HashSet<Estado> EdosAFD = new HashSet<Estado>(); //ya
-        public HashSet<Estado> EdosAccept = new HashSet<Estado>(); // Ya
+        public HashSet<Estado> EdosAccept = new HashSet<Estado>(); // ya
         public HashSet<char> alfabeto = new HashSet<char>(); // ya
-        public int NumEstados;
+        public int NumEstados; //ya
         public int[,] TablaAFD; //ya
         public int idAFD=0; //ya
 
@@ -93,29 +93,6 @@ namespace AnalizadorLexico
 
 
 
-        public void LeerAFDdeArchivo(string nombreArchivo, int idAFD1)
-        {
-            string linea;
-            string[] datos;
-            System.IO.StreamReader file = new System.IO.StreamReader(nombreArchivo);
-            idAFD = idAFD1;
-            while ((linea = file.ReadLine()) != null)
-            {
-                datos = linea.Split(',');
-                if (datos[0] == "AFD")
-                {
-                    NumEstados = Convert.ToInt32(datos[1]);
-                    TablaAFD = new int[NumEstados, 256];
-                }
-                else
-                {
-                    int i = Convert.ToInt32(datos[0]);
-                    int j = Convert.ToInt32(datos[1]);
-                    int k = Convert.ToInt32(datos[2]);
-                    TablaAFD[i, j] = k;
-                }
-            }
-            file.Close();
-        }
+        
     }
 }
