@@ -37,6 +37,7 @@
             this.lblRuta = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
+            this.analizarcad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAFD)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,11 +119,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // analizarcad
+            // 
+            this.analizarcad.Location = new System.Drawing.Point(123, 352);
+            this.analizarcad.Name = "analizarcad";
+            this.analizarcad.Size = new System.Drawing.Size(83, 23);
+            this.analizarcad.TabIndex = 8;
+            this.analizarcad.Text = "Analizar";
+            this.analizarcad.UseVisualStyleBackColor = true;
+            this.analizarcad.Click += new System.EventHandler(this.analizarcad_Click);
+            // 
             // AnalizCadena
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.analizarcad);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblRuta);
             this.Controls.Add(this.label2);
@@ -151,5 +163,6 @@
         private System.Windows.Forms.Label lblRuta;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button analizarcad;
     }
 }

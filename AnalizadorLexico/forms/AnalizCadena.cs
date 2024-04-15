@@ -99,5 +99,12 @@ namespace AnalizadorLexico.forms
                 txtCadena.Text = openFileDialog1.FileName;   
             }
         }
+
+        private void analizarcad_Click(object sender, EventArgs e)
+        {
+            AnalizLexico al = new AnalizLexico();
+            al = new AnalizLexico(txtCadena.Text, afds.ElementAt(0));
+            al.yylex();
+        }
     }
 }

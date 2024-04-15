@@ -120,7 +120,7 @@ namespace AnalizadorLexico
             Pila.Clear();
         }
 
-        public string cadenaXAnalizar() // yylex()
+        public string cadenaXAnalizar()
         {
             return cadSigma.Substring(iCharAct, cadSigma.Length - iCharAct);
         }
