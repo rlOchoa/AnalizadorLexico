@@ -101,6 +101,7 @@
     <Compile Include="forms\ERAFN.Designer.cs">
       <DependentUpon>ERAFN.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\ExprEval.cs" />
     <Compile Include="forms\Opcional.cs">
       <SubType>Form</SubType>
     </Compile>
