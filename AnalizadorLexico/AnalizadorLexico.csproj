@@ -101,7 +101,13 @@
     <Compile Include="forms\ERAFN.Designer.cs">
       <DependentUpon>ERAFN.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\ExprEval.cs" />
+    <Compile Include="ExprEval.cs" />
+    <Compile Include="forms\EvaluadorExpr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\EvaluadorExpr.Designer.cs">
+      <DependentUpon>EvaluadorExpr.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\Opcional.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\ConverAFNAFD.resx">
       <DependentUpon>ConverAFNAFD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\EvaluadorExpr.resx">
+      <DependentUpon>EvaluadorExpr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Opcional.resx">
       <DependentUpon>Opcional.cs</DependentUpon>
