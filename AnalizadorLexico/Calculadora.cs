@@ -1,31 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AnalizadorLexico
 {
-    internal class Matrix
+    internal class Calculadora
     {
-        String Matriz;
+        public String expre;
         public float res;
         public String ExprPost;
         public AnalizLexico Lexic;
 
-        public Matrix(string sigma, AFD afd)
+        public Calculadora(string sigma, AFD afd)
         {
-            Matriz = sigma;
+            expre = sigma;
             Lexic = new AnalizLexico(sigma, afd);
         }
 
+        /*
+         
+
+        */
+
         public void SetExpression(string sigma)
         {
-            Matriz = sigma;
+            expre = sigma;
             Lexic.setSigma(sigma);
         }
 
-        bool Asign()
+        public bool Asign()
         {
             int Token;
             float v = 0;
@@ -121,101 +127,7 @@ namespace AnalizadorLexico
                 case 10:
                     return true;
             }
-            if (MATRIX())
-            {
-                return true;
-            }
             return false;
-        }
-
-        bool MATRIX()
-        {
-            int numRows;
-            int token;
-            token = Lexic.yylex();
-            if (token == 90)
-            {
-                numRows = 0;
-                if (ROWS(ref numRows))
-                {
-                    numFilas = numRows;
-                    token = Lexic.yylex();
-                    if (token == 100)
-                        return true;
-                }
-            }
-            return false;
-        }
-
-        bool ROWS(ref int numRows)
-        {
-            int numCol = 0;
-            if (ROW(ref numCol))
-                if (ROWSp(ref numRows))
-                    return true;
-            return false;
-        }
-
-        bool ROWSp(ref int numRows)
-        {
-            int numCol = 0;
-            if (ROW(ref numCol))
-            {
-                if (ROWSp(ref numRows))
-                    return true;
-                return false;
-            }
-            return true;
-        }
-
-        bool ROW(ref int numCol)
-        {
-            int token;
-            token = Lexic.yylex();
-            if (token == 90)
-            {
-                if (LNUM(ref numCol))
-                {
-                    token = Lexic.yylex();
-                    if (token == 100)
-                        return true;
-                }
-            }
-            return false;
-        }
-
-        bool LNUM(ref int numCol)
-        {
-            int token;
-            token = Lexic.yylex();
-            if (token == 120)
-            {
-                numCol++;
-                if (LNUMp(ref numCol))
-                    return true;
-            }
-            return false;
-        }
-
-        bool LNUMp(ref int numCol)
-        {
-            int token;
-            token = Lexic.yylex();
-            if (token == 110)
-            {
-                token = Lexic.yylex();
-                if (token == 120)
-                {
-                    numCol++;
-                    if (LNUMp(ref numCol))
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-            Lexic.Undotoken();
-            return true;
         }
     }
 }
