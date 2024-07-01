@@ -17,12 +17,12 @@ namespace AnalizadorLexico
         HashSet<Estado> EdosAccept = new HashSet<Estado>();
         HashSet<char> Alfabeto = new HashSet<char>();
         bool SeAgregoAFNUnionLexico;
-        public int idAFN; 
+        public int idAFN;
 
         //constructores
         public AFN()
         {
-            idAFN=0;
+            idAFN = 0;
             EdoIni = null;
             EdosAFN.Clear();
             EdosAccept.Clear();
@@ -66,7 +66,7 @@ namespace AnalizadorLexico
                 char aux = s1;
                 s1 = s2;
                 s2 = aux;
-            } 
+            }
             Transicion t;
             Estado e1, e2;
             e1 = new Estado();
@@ -74,7 +74,7 @@ namespace AnalizadorLexico
             t = new Transicion(s1, s2, e2);
             _ = e1.Trans.Add(t);
             e2.setEdoAccept(true);
-            for (i = s1 ; i <= s2 ; i++)
+            for (i = s1; i <= s2; i++)
             {
                 _ = Alfabeto.Add(i);
             }
@@ -96,9 +96,9 @@ namespace AnalizadorLexico
             _ = e1.Trans.Add(t1);
             _ = e1.Trans.Add(t2);
 
-            foreach(Estado e in this.EdosAccept)
+            foreach (Estado e in this.EdosAccept)
             {
-                _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON,e2));
+                _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e2));
                 e.setEdoAccept(false);
             }
 
@@ -225,13 +225,13 @@ namespace AnalizadorLexico
             pilaEstados.Clear();
 
             pilaEstados.Push(e);
-            while(pilaEstados.Count != 0)
+            while (pilaEstados.Count != 0)
             {
                 aux = pilaEstados.Pop();
                 _ = conjEstados.Add(aux);
-                foreach(Transicion t in aux.Trans)
+                foreach (Transicion t in aux.Trans)
                 {
-                    if((edo = t.getEdoTrans(SimbolosEspeciales.EPSILON)) != null)
+                    if ((edo = t.getEdoTrans(SimbolosEspeciales.EPSILON)) != null)
                     {
                         if (!conjEstados.Contains(edo))
                         {
@@ -240,7 +240,7 @@ namespace AnalizadorLexico
                     }
                 }
             }
-           
+
             return conjEstados;
         }
 
@@ -252,7 +252,7 @@ namespace AnalizadorLexico
             conjEstados.Clear();
             pilaEstados.Clear();
 
-            foreach(Estado ed in e)
+            foreach (Estado ed in e)
             {
                 pilaEstados.Push(ed);
             }
@@ -313,8 +313,8 @@ namespace AnalizadorLexico
             return c;
         }
 
-        public HashSet<Estado> irA(HashSet<Estado> e,char a)
-        {         
+        public HashSet<Estado> irA(HashSet<Estado> e, char a)
+        {
             return operacionEpsilon(mover(e, a));
         }
 
@@ -327,7 +327,7 @@ namespace AnalizadorLexico
 
             foreach (AFN aux in afnsObtenidos)
             {
-                Transicion t = new Transicion(SimbolosEspeciales.EPSILON,aux.EdoIni);
+                Transicion t = new Transicion(SimbolosEspeciales.EPSILON, aux.EdoIni);
                 e.Trans.Add(t); //se agrega por cada AFN una transicion epsilon del estado creado
                                 //al estado inicial del AFN
                 if (!seAgregoid)
@@ -335,7 +335,7 @@ namespace AnalizadorLexico
                     nuevoAFN.idAFN = aux.idAFN;
                     seAgregoid = true; //se agrega el id del primer elemento encontrado
                 }
-                foreach(Estado edoAux in aux.EdosAccept)
+                foreach (Estado edoAux in aux.EdosAccept)
                 {
                     edoAux.setEdoAccept(true);
                     edoAux.setToken(tok);
@@ -349,7 +349,7 @@ namespace AnalizadorLexico
             }
             nuevoAFN.EdoIni = e;
             nuevoAFN.EdosAFN.Add(e);
-          
+
             return nuevoAFN;
 
             //nuevoAFN.SeAgregoAFNUnionLexico = true;
@@ -383,8 +383,8 @@ namespace AnalizadorLexico
         public int indiceCaracter(char[] arregloAlfabeto, char c)
         {
             int i;
-            for (i=0; i < arregloAlfabeto.Length;i++)
-                if (arregloAlfabeto[i]==c)
+            for (i = 0; i < arregloAlfabeto.Length; i++)
+                if (arregloAlfabeto[i] == c)
                     return (int)c;
             return -1;
         }
@@ -392,23 +392,23 @@ namespace AnalizadorLexico
         public AFD convAFNaAFD()
         {
             int cardinAlfabeto, numEdoAFD;
-            int i, j, r,k,l=0;
+            int i, j, r, k, l = 0;
             char[] arrAlfabeto;
             EdoIj Ij, Ik;
             bool existe;
 
             HashSet<Estado> conjAux = new HashSet<Estado>();
-            HashSet<EdoIj> EdosAFD = new HashSet<EdoIj> ();
-            Queue<EdoIj> EdosSinAnalizar = new Queue<EdoIj> ();
+            HashSet<EdoIj> EdosAFD = new HashSet<EdoIj>();
+            Queue<EdoIj> EdosSinAnalizar = new Queue<EdoIj>();
             AFD nuevoAFD = new AFD();
 
-            EdosAFD.Clear ();
+            EdosAFD.Clear();
             EdosSinAnalizar.Clear();
 
             cardinAlfabeto = this.Alfabeto.Count;
             arrAlfabeto = new char[cardinAlfabeto];
             i = 0;
-            foreach(char c in this.Alfabeto)
+            foreach (char c in this.Alfabeto)
             {
                 arrAlfabeto[i++] = c;
             }
@@ -419,29 +419,29 @@ namespace AnalizadorLexico
                 conIj = operacionEpsilon(this.EdoIni)
             };
 
-            EdosAFD.Add (Ij);
+            EdosAFD.Add(Ij);
             EdosSinAnalizar.Enqueue(Ij);
             j++;
-            while(EdosSinAnalizar.Count != 0)
+            while (EdosSinAnalizar.Count != 0)
             {
                 Ij = EdosSinAnalizar.Dequeue();
 
-                foreach(char c in Alfabeto)
+                foreach (char c in Alfabeto)
                 {
                     Ik = new EdoIj()
                     {
-                        conIj = irA(Ij.conIj,c)
+                        conIj = irA(Ij.conIj, c)
                     };
 
                     if (Ik.conIj.Count() == 0)
                         continue;
                     existe = false;
-                    foreach(EdoIj I in EdosAFD)
+                    foreach (EdoIj I in EdosAFD)
                     {
                         if (I.conIj.SetEquals(Ik.conIj))
                         {
                             existe = true;
-                            r = indiceCaracter(arrAlfabeto,c);
+                            r = indiceCaracter(arrAlfabeto, c);
                             Ij.transicionesAFD[r] = I.j;
                             break;
                         }
@@ -469,8 +469,9 @@ namespace AnalizadorLexico
                 e.setIdEstado(conjEdos.j);
                 foreach (Estado estado in conjEdos.conIj)
                 {
-
-                    if (estado.getEdoAccept()) //TODO: Corregir parte, con la observacion del profe, de intersectar el estado IJ, con los estados de aceptacion del AFN
+                    
+                    EdoIj eij = IntersectarEstados(Ij, estado);
+                    if (eij.j == 1) //Corregir parte, con la observacion del profe, de intersectar el estado IJ, con los estados de aceptacion del AFN
                     {
 
                         e.setEdoAccept(true);
@@ -515,6 +516,27 @@ namespace AnalizadorLexico
             nuevoAFD.NumEstados = i;
             return nuevoAFD;
             //return nuevoAFD;
+        }
+
+        public EdoIj IntersectarEstados(EdoIj IJ, Estado estadoAceptacion)
+        {
+            EdoIj estadoInterseccion = new EdoIj();
+
+            foreach (var transicion in IJ.conIj.SelectMany(e => e.Trans))
+            {
+                if (estadoAceptacion.Trans.Contains(transicion))
+                {
+                    estadoInterseccion.conIj.Add(estadoAceptacion);
+                    estadoInterseccion.j = 1;
+                }
+            }
+
+            if (estadoInterseccion.j != 1)
+            {
+                estadoInterseccion.j = -1;
+            }
+
+            return estadoInterseccion;
         }
     }
 }
