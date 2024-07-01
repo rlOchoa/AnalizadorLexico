@@ -32,7 +32,7 @@ namespace AnalizadorLexico
             if (E(ref f))
             {
                 token = Lexic.yylex();
-                if (token == 0)
+                if (token == SimbolosEspeciales.FIN)
                 {
                     result = f;
                     return true;
@@ -146,14 +146,14 @@ namespace AnalizadorLexico
 
                     if (token == 110)
                     {
-                        simb1 = Lexic.lexema[0];
+                        simb1 = Lexic.Lexema[0];
                         token = Lexic.yylex();
                         if (token == 100)
                         {
                             token = Lexic.yylex();
                             if (token == 110)
                             {
-                                simb2 = Lexic.lexema[0];
+                                simb2 = Lexic.Lexema[0];
                                 token = Lexic.yylex();
                                 if (token == 90)
                                 {
@@ -165,7 +165,7 @@ namespace AnalizadorLexico
                     }
                     return false;
                 case 110:
-                    simb1 = Lexic.lexema[0];
+                    simb1 = Lexic.Lexema[0];
                     f.crearAFNBasico(simb1);
                     return true;
             }

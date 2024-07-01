@@ -9,9 +9,9 @@ namespace AnalizadorLexico
     public class EdoIj
     {
         //atributos
-        public int j { get; set; };
-        public HashSet<Estado> conIj { get; set; };
-        public int[] transicionesAFD { get; set; };
+        public int j;
+        public HashSet<Estado> conIj;
+        public int[] transicionesAFD;
 
         public EdoIj()
         {

@@ -10,7 +10,7 @@ namespace AnalizadorLexico
     class ExprEval
     {
         String Expresion;
-        public float Resultado;
+        public double Resultado;
         public String ExprPost;
         public AnalizLexico Lexic;
 
@@ -41,7 +41,7 @@ namespace AnalizadorLexico
         public bool IniEval()
         {
             int Token;
-            float v = 0;
+            double v = 0;
             string postfijo = "";
             if (E(ref v, ref postfijo))
             {
@@ -56,18 +56,18 @@ namespace AnalizadorLexico
             return false;
         }
 
-        bool E(ref float v, ref string post)
+        bool E(ref double v, ref string post)
         {
-            if (T(ref v, ref postfijo))
-                if (Ep(ref v, ref postfijo))
+            if (T(ref v, ref post))
+                if (Ep(ref v, ref post))
                     return true;
             return false;
         }
 
-        bool Ep(ref float v, ref string post)
+        bool Ep(ref double v, ref string post)
         {
             int Token;
-            float v1 = 0;
+            double v1 = 0;
             string post1 = "";
             Token = Lexic.yylex();
             if (Token == 10 || Token == 20)
@@ -85,18 +85,18 @@ namespace AnalizadorLexico
             return true;
         }
 
-        bool T(ref float v, ref string post)
+        bool T(ref double v, ref string post)
         {
-            if (T(ref v, ref post))
+            if (P(ref v, ref post))
                 if (Tp(ref v, ref post))
                     return true;
             return false;
         }
 
-        bool Tp(ref float v, ref string post)
+        bool Tp(ref double v, ref string post)
         {
             int Token;
-            float v1 = 0;
+            double v1 = 0;
             string post1 = "";
             Token = Lexic.yylex();
             if (Token == 30 || Token == 40)
@@ -114,22 +114,129 @@ namespace AnalizadorLexico
             return true;
         }
 
-        bool F(ref float v, ref string post)
+        bool P(ref double v, ref string post)
+        {
+            if(F(ref v, ref post))
+                if(Pp(ref v, ref post))
+                    return true;
+            return false;
+        }
+
+        bool Pp(ref double v, ref string post)
+        {
+            int Token;
+            double v1 = 0;
+            string post1 = "";
+            Token = Lexic.yylex();
+            if(Token == 50)
+            {
+                if (F(ref v1, ref post1)){
+                    v = Math.Pow(v, v1);
+                    post = post + " " + post1 + " " + "^";
+                    if (Pp(ref v , ref post))
+                        return true;
+                }
+            }
+            Lexic.Undotoken();
+            return true;
+        }
+
+        bool F(ref double v, ref string post)
         {
             int Token;
             Token = Lexic.yylex();
             switch (Token)
             {
-                case 50:
+                case 60: //SIN(E)
+                    Token = Lexic.yylex();
+                    if(Token == 120)
+                    {
+                        if (E(ref v, ref post))
+                        {
+                            Token = Lexic.yylex();
+                            if (Token == 130)
+                            {
+                                v = Math.Sin(v);
+                                post = post + " " + "SIN";
+                                return true;
+                            }
+                        }
+                    }
+                    break;
+                case 70: //COS(E)
+                    Token = Lexic.yylex();
+                    if (Token == 120)
+                    {
+                        if (E(ref v, ref post))
+                        {
+                            Token = Lexic.yylex();
+                            if (Token == 130)
+                            {
+                                v = Math.Cos(v);
+                                post = post + " " + "COS";
+                                return true;
+                            }
+                        }
+                    }
+                    break;
+                case 80: //SIN(E)
+                    Token = Lexic.yylex();
+                    if (Token == 120)
+                    {
+                        if (E(ref v, ref post))
+                        {
+                            Token = Lexic.yylex();
+                            if (Token == 130)
+                            {
+                                v = Math.Tan(v);
+                                post = post + " " + "TAN";
+                                return true;
+                            }
+                        }
+                    }
+                    break;
+                case 90: //LOG(E)
+                    Token = Lexic.yylex();
+                    if (Token == 120)
+                    {
+                        if (E(ref v, ref post))
+                        {
+                            Token = Lexic.yylex();
+                            if (Token == 130)
+                            {
+                                v = Math.Log10(v);
+                                post = post + " " + "LOG";
+                                return true;
+                            }
+                        }
+                    }
+                    break;
+                case 100: //LN(E)
+                    Token = Lexic.yylex();
+                    if (Token == 120)
+                    {
+                        if (E(ref v, ref post))
+                        {
+                            Token = Lexic.yylex();
+                            if (Token == 130)
+                            {
+                                v = Math.Log(v);
+                                post = post + " " + "SIN";
+                                return true;
+                            }
+                        }
+                    }
+                    break;
+                case 120://(E)
                     if (E(ref v, ref post))
                     {
                         Token = Lexic.yylex();
-                        if (Token == 60)
+                        if (Token == 130)
                             return true;
                     }
                     break;
-                case 70:
-                    v = float.Parse(Lexic.Lexema);
+                case 110://NUM
+                    v = double.Parse(Lexic.Lexema);
                     post = Lexic.Lexema;
                     return true;
             }

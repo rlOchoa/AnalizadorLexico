@@ -55,3 +55,7 @@ C:\Users\harum\OneDrive\Documentos\GitHub\AnalizadorLexico\AnalizadorLexico\obj\
 C:\Users\harum\OneDrive\Documentos\GitHub\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.csproj.CoreCompileInputs.cache
 C:\Users\harum\OneDrive\Documentos\GitHub\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.exe
 C:\Users\harum\OneDrive\Documentos\GitHub\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.pdb
+C:\Users\harum\OneDrive\Documentos\GitHub\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.Calculadora.resources
+C:\Users\harum\OneDrive\Documentos\GitHub\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.EvaluadorExpr.resources
+C:\Users\harum\OneDrive\Documentos\GitHub\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.ERAFN.resources
+C:\Users\harum\OneDrive\Documentos\GitHub\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.forms.MatrixForm.resources

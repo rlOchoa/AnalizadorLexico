@@ -40,6 +40,7 @@
             this.convertirAFNAFDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analizarUnaCadenaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.probarAnalizadorLéxicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.evaluarMatrizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             aFNsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -58,7 +59,8 @@
             this.unionParaAnalizadorLexicoToolStripMenuItem,
             this.convertirAFNAFDToolStripMenuItem,
             this.analizarUnaCadenaToolStripMenuItem,
-            this.probarAnalizadorLéxicoToolStripMenuItem});
+            this.probarAnalizadorLéxicoToolStripMenuItem,
+            this.evaluarMatrizToolStripMenuItem});
             aFNsToolStripMenuItem.Name = "aFNsToolStripMenuItem";
             aFNsToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             aFNsToolStripMenuItem.Text = "AFN\'s";
@@ -138,8 +140,15 @@
             // 
             this.probarAnalizadorLéxicoToolStripMenuItem.Name = "probarAnalizadorLéxicoToolStripMenuItem";
             this.probarAnalizadorLéxicoToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.probarAnalizadorLéxicoToolStripMenuItem.Text = "Probar analizador léxico";
+            this.probarAnalizadorLéxicoToolStripMenuItem.Text = "Evaluar Calculadora";
             this.probarAnalizadorLéxicoToolStripMenuItem.Click += new System.EventHandler(this.probarAnalizadorLéxicoToolStripMenuItem_Click);
+            // 
+            // evaluarMatrizToolStripMenuItem
+            // 
+            this.evaluarMatrizToolStripMenuItem.Name = "evaluarMatrizToolStripMenuItem";
+            this.evaluarMatrizToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.evaluarMatrizToolStripMenuItem.Text = "Evaluar Matriz";
+            this.evaluarMatrizToolStripMenuItem.Click += new System.EventHandler(this.evaluarMatrizToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -182,6 +191,7 @@
         private System.Windows.Forms.ToolStripMenuItem convertirAFNAFDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem analizarUnaCadenaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem probarAnalizadorLéxicoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem evaluarMatrizToolStripMenuItem;
     }
 }
 

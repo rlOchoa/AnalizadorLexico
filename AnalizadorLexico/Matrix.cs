@@ -9,8 +9,8 @@ namespace AnalizadorLexico
     internal class Matrix
     {
         String Matriz;
-        public float res;
-        public String ExprPost;
+        public double res;
+        public string ExprPost;
         public AnalizLexico Lexic;
 
         public Matrix(string sigma, AFD afd)
@@ -24,29 +24,29 @@ namespace AnalizadorLexico
             Matriz = sigma;
             Lexic.setSigma(sigma);
         }
-
-        bool Asign()
+        public bool iniEval()
+        {
+            return Asign(ref res, ref ExprPost);
+        }
+        public bool Asign(ref double v,ref string Postfijo)
         {
             int Token;
-            float v = 0;
-            string Postfijo = "";
             Token = Lexic.yylex();
 
             if (Token == 10)
             {
+                Postfijo = Postfijo + Lexic.Lexema + " = ";
                 Token = Lexic.yylex();
                 if (Token == 20)
                     if (E(ref v, ref Postfijo))
                     {
-                        this.res = v;
-                        this.ExprPost = Postfijo;
                         return true;
                     }
             }
             return false;
         }
 
-        bool E(ref float v, ref string post)
+        bool E(ref double v, ref string post)
         {
             if (T(ref v, ref post))
                 if (Ep(ref v, ref post))
@@ -54,9 +54,9 @@ namespace AnalizadorLexico
             return false;
         }
 
-        bool Ep(ref float v, ref string post)
+        bool Ep(ref double v, ref string post)
         {
-            float v1 = 0;
+            double v1 = 0;
             int token;
             string post1 = "";
             token = Lexic.yylex();
@@ -75,7 +75,7 @@ namespace AnalizadorLexico
             return true;
         }
 
-        bool T(ref float v, ref string post)
+        bool T(ref double v, ref string post)
         {
             if (F(ref v, ref post))
                 if (Tp(ref v, ref post))
@@ -83,9 +83,9 @@ namespace AnalizadorLexico
             return false;
         }
 
-        bool Tp(ref float v, ref string post)
+        bool Tp(ref double v, ref string post)
         {
-            float v1 = 0;
+            double v1 = 0;
             int token;
             string post1 = "";
             token = Lexic.yylex();
@@ -104,7 +104,7 @@ namespace AnalizadorLexico
             return true;
         }
 
-        bool F(ref float v, ref string post)
+        bool F(ref double v, ref string post)
         {
             int token;
             token = Lexic.yylex();
@@ -119,85 +119,89 @@ namespace AnalizadorLexico
                     }
                     return false;
                 case 10:
+                    post = post + " " + Lexic.Lexema;
                     return true;
-            }
-            if (MATRIX())
-            {
-                return true;
+                case 90:
+                    string post1 = "";
+                    if(ROWS(ref v,ref post1))
+                    {
+                        token= Lexic.yylex();
+                        if (token == 100)
+                        {
+                            post = post + " " + post1 + " Matriz ";
+                            return true;
+                        }
+                    }
+                    break;
+                case 120:
+                    v = double.Parse(Lexic.Lexema);
+                    post = Lexic.Lexema;
+                    return true;
             }
             return false;
         }
 
-        bool MATRIX()
+        bool ROWS(ref double v, ref string post)
         {
-            int numRows;
-            int token;
-            token = Lexic.yylex();
-            if (token == 90)
+            
+            if (ROW(ref v,ref post))
+                if (ROWSp(ref v,ref post))
+                    return true;
+            return false;
+        }
+
+        bool ROWSp(ref double v, ref string post)
+        {
+            int token = Lexic.yylex();
+            if(token == 110)
             {
-                numRows = 0;
-                if (ROWS(ref numRows))
+                if (ROW(ref v, ref post))
                 {
-                    numFilas = numRows;
-                    token = Lexic.yylex();
-                    if (token == 100)
+                    if (ROWSp(ref v, ref post))
+                    {
                         return true;
+                    }
+                    return false;
                 }
             }
-            return false;
-        }
-
-        bool ROWS(ref int numRows)
-        {
-            int numCol = 0;
-            if (ROW(ref numCol))
-                if (ROWSp(ref numRows))
-                    return true;
-            return false;
-        }
-
-        bool ROWSp(ref int numRows)
-        {
-            int numCol = 0;
-            if (ROW(ref numCol))
-            {
-                if (ROWSp(ref numRows))
-                    return true;
-                return false;
-            }
+            Lexic.Undotoken();
             return true;
         }
 
-        bool ROW(ref int numCol)
+        bool ROW(ref double v, ref string post)
         {
             int token;
+            string post1 = "";
             token = Lexic.yylex();
             if (token == 90)
             {
-                if (LNUM(ref numCol))
+                if (LNUM(ref v, ref post1))
                 {
                     token = Lexic.yylex();
                     if (token == 100)
+                    {
+                        post = post + " " + post1 + " Renglon ";
                         return true;
+                    }
                 }
             }
             return false;
         }
 
-        bool LNUM(ref int numCol)
+        bool LNUM(ref double v, ref string post)
         {
             int token;
             token = Lexic.yylex();
             if (token == 120)
             {
-                numCol++;
-                if (LNUMp(ref numCol))
+                post = post + " " + Lexic.Lexema + " , ";
+                if (LNUMp(ref v, ref post))
                     return true;
             }
             return false;
         }
 
-        bool LNUMp(ref int numCol)
+        bool LNUMp(ref double v, ref string post)
         {
             int token;
             token = Lexic.yylex();
@@ -206,9 +210,10 @@ namespace AnalizadorLexico
                 token = Lexic.yylex();
                 if (token == 120)
                 {
-                    numCol++;
-                    if (LNUMp(ref numCol))
+                    post = post + " " + Lexic.Lexema + " , ";
+                    if (LNUMp(ref v, ref post))
                     {
+                        
                         return true;
                     }
                 }

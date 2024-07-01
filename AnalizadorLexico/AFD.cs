@@ -12,12 +12,12 @@ namespace AnalizadorLexico
     {
         //atributos
         public static HashSet<AFD> conjDeAFDs = new HashSet<AFD>();
-        public Estado EdoIni { get; set; }; //ya
+        public Estado EdoIni; //ya
         public HashSet<Estado> EdosAFD = new HashSet<Estado>(); //ya
         public HashSet<Estado> EdosAccept = new HashSet<Estado>(); // ya
         public HashSet<char> alfabeto = new HashSet<char>(); // ya
-        public int NumEstados { get; set; }; //ya
-        public int[,] TablaAFD { get; set; }; //ya
+        public int NumEstados; //ya
+        public int[,] TablaAFD; //ya
         public int idAFD=0; //ya
 
         public AFD()

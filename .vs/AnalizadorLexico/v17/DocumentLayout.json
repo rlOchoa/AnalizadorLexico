@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\analizadorlexico\\forms\\analizcadena.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\forms\\analizcadena.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|c:\\users\\harum\\onedrive\\documentos\\github\\analizadorlexico\\analizadorlexico\\matrix.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\matrix.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|c:\\users\\harum\\onedrive\\documentos\\github\\analizadorlexico\\analizadorlexico\\forms\\analizcadena.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\forms\\analizcadena.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|c:\\users\\harum\\onedrive\\documentos\\github\\analizadorlexico\\analizadorlexico\\forms\\matrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\forms\\matrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\analizadorlexico\\afd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\afd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|c:\\users\\harum\\onedrive\\documentos\\github\\analizadorlexico\\analizadorlexico\\expreval.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\expreval.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|c:\\users\\harum\\onedrive\\documentos\\github\\analizadorlexico\\analizadorlexico\\estado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\estado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\analizadorlexico\\afn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\afn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\analizadorlexico\\forms\\compilador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\forms\\compilador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|c:\\users\\harum\\onedrive\\documentos\\github\\analizadorlexico\\analizadorlexico\\forms\\matrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{132C67DE-9838-4461-A540-37DCA53EF4DD}|AnalizadorLexico\\AnalizadorLexico.csproj|solutionrelative:analizadorlexico\\forms\\matrixform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,86 +26,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "AFD.cs",
-              "DocumentMoniker": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\AFD.cs",
-              "RelativeDocumentMoniker": "AnalizadorLexico\\AFD.cs",
-              "ToolTip": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\AFD.cs",
-              "RelativeToolTip": "AnalizadorLexico\\AFD.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAABCAAAA",
+              "Title": "ExprEval.cs",
+              "DocumentMoniker": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\ExprEval.cs",
+              "RelativeDocumentMoniker": "AnalizadorLexico\\ExprEval.cs",
+              "ToolTip": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\ExprEval.cs",
+              "RelativeToolTip": "AnalizadorLexico\\ExprEval.cs",
+              "ViewState": "AQIAAOQAAAAAAAAAAAAAAPAAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-14T22:24:26.796Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Compilador.cs",
-              "DocumentMoniker": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\forms\\Compilador.cs",
-              "RelativeDocumentMoniker": "AnalizadorLexico\\forms\\Compilador.cs",
-              "ToolTip": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\forms\\Compilador.cs",
-              "RelativeToolTip": "AnalizadorLexico\\forms\\Compilador.cs",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAkwF8AAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-14T22:35:28.083Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AFN.cs",
-              "DocumentMoniker": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\AFN.cs",
-              "RelativeDocumentMoniker": "AnalizadorLexico\\AFN.cs",
-              "ToolTip": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\AFN.cs",
-              "RelativeToolTip": "AnalizadorLexico\\AFN.cs",
-              "ViewState": "AQIAAOsBAAAAAAAAAAAwwO4BAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-14T22:24:32.419Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Estado.cs",
-              "DocumentMoniker": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\Estado.cs",
-              "RelativeDocumentMoniker": "AnalizadorLexico\\Estado.cs",
-              "ToolTip": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\Estado.cs",
-              "RelativeToolTip": "AnalizadorLexico\\Estado.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-15T09:51:33.335Z",
+              "WhenOpened": "2024-07-01T12:53:50.229Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AnalizCadena.cs",
-              "DocumentMoniker": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\forms\\AnalizCadena.cs",
-              "RelativeDocumentMoniker": "AnalizadorLexico\\forms\\AnalizCadena.cs",
-              "ToolTip": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\forms\\AnalizCadena.cs",
-              "RelativeToolTip": "AnalizadorLexico\\forms\\AnalizCadena.cs",
-              "ViewState": "AQIAANUAAAAAAAAAAAAgwO4AAAA0AAAA",
+              "Title": "Matrix.cs",
+              "DocumentMoniker": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\Matrix.cs",
+              "RelativeDocumentMoniker": "AnalizadorLexico\\Matrix.cs",
+              "ToolTip": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\Matrix.cs",
+              "RelativeToolTip": "AnalizadorLexico\\Matrix.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAA9wCUAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-15T01:13:38.716Z",
+              "WhenOpened": "2024-07-01T11:11:04.309Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AnalizCadena.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\forms\\AnalizCadena.cs",
-              "RelativeDocumentMoniker": "AnalizadorLexico\\forms\\AnalizCadena.cs",
-              "ToolTip": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\forms\\AnalizCadena.cs [Dise\u00F1o]",
-              "RelativeToolTip": "AnalizadorLexico\\forms\\AnalizCadena.cs [Dise\u00F1o]",
+              "Title": "MatrixForm.cs",
+              "DocumentMoniker": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\forms\\MatrixForm.cs",
+              "RelativeDocumentMoniker": "AnalizadorLexico\\forms\\MatrixForm.cs",
+              "ToolTip": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\forms\\MatrixForm.cs",
+              "RelativeToolTip": "AnalizadorLexico\\forms\\MatrixForm.cs",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAqwHwAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-15T01:13:35.244Z",
+              "WhenOpened": "2024-07-01T11:01:51.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MatrixForm.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\forms\\MatrixForm.cs",
+              "RelativeDocumentMoniker": "AnalizadorLexico\\forms\\MatrixForm.cs",
+              "ToolTip": "C:\\Users\\harum\\OneDrive\\Documentos\\GitHub\\AnalizadorLexico\\AnalizadorLexico\\forms\\MatrixForm.cs [Dise\u00F1o]",
+              "RelativeToolTip": "AnalizadorLexico\\forms\\MatrixForm.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T10:59:04.414Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

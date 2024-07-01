@@ -71,8 +71,10 @@ namespace AnalizadorLexico
 
         private void eRAFNToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forms.ERAFN erafn = new forms.ERAFN();
+            forms.ERAFN erafn = new forms.ERAFN(afns,afds);
             erafn.Show();
+            this.Hide();
+            
         }
 
         private void unionParaAnalizadorLexicoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -98,8 +100,15 @@ namespace AnalizadorLexico
 
         private void probarAnalizadorLéxicoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            forms.ProbarALex probarALex = new forms.ProbarALex();
-            probarALex.Show();
+            forms.EvaluadorExpr evaluadorExpr = new forms.EvaluadorExpr(afns, afds);
+            evaluadorExpr.Show();
+            this.Hide();
+        }
+        private void evaluarMatrizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            forms.MatrixForm matriz = new forms.MatrixForm(afns, afds); 
+            matriz.Show();
+            this.Hide();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -116,5 +125,6 @@ namespace AnalizadorLexico
         {
              Application.Exit();
         }
+
     }
 }
